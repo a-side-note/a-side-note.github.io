@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="グラフィックデザイナーAMIのポートフォリオサイト。
+    ブランディング、ロゴ、パッケージ、販促物などを中心に、
+    Webなどのデザインを手がけています。感性と理論を行き来し、目的に寄り添うデザインを大切にしています。">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMI｜Graphic Designer Portfolio</title>
+
+<!-- google fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+
+
+<!-- CSS -->
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/style.css"> 
+
+
+<!-- FAVICON -->
+<link rel="icon" href="/img/common/favicon.ico" sizes="any">
+
+    
+</head>
+
+<body class="home-page">
+
+    <!-- -------------------- HOME FILM DISTORTION PC / TB / SP -------------------- -->
+
+<svg
+    class="home-film-filter"
+    aria-hidden="true"
+    width="0"
+    height="0"
+>
+    <filter id="home-film-distortion">
+        <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.008 0.012"
+            numOctaves="2"
+            seed="4"
+            result="noise"
+        />
+
+        <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="8"
+            xChannelSelector="R"
+            yChannelSelector="G"
+        />
+    </filter>
+</svg>
+
+<div id="common-header"></div>
+<!-- #common-header -->
+
+
+<!-- -------------------- HOME MAIN / PC・TB・SP -------------------- -->
+<main>
+
+
+    <h1>
+        <span class="home-identity">
+            <span class="home-concept">A Side Note Design</span>
+            <span class="graphic-designer">AMI | Graphic Designer</span>
+        </span>
+        <!-- .home-identity -->
+    </h1>
+
+
+    <!-- -------------------- HOME NEWS / PC・TB・SP -------------------- -->
+    <section class="home-news" aria-label="News">
+
+        <div class="home-news-list" id="home-news-list">
+            <!-- news.html から最新3件を自動取得 -->
+        </div>
+        <!-- .home-news-list -->
+
+        <a href="/news.html" class="news-link home-news-more">
+            <span class="news-link-text">View more</span>
+            <span class="news-link-arrow" aria-hidden="true"></span>
+        </a>
+
+    </section>
+    <!-- .home-news -->
+
+</main>
+<!-- HOME MAIN -->
+
+
+
+<div id="common-footer"></div>
+<!-- #common-footer -->
+
+
+<script src="/js/common.js"></script>
+<!-- js -->
+
+</body>
+<!-- .home-page -->
+
+</html>

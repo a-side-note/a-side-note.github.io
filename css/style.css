@@ -1,0 +1,8970 @@
+@charset "utf-8";
+
+:root {
+
+--font-family-en: "Jost", sans-serif;
+--font-family-ja: "Zen Kaku Gothic New", sans-serif;
+
+
+--font-size-main: 15px;
+--font-size-small: 13px;
+
+--font-size-h1-ja: 36px;
+--font-size-h2-ja: 24px;
+--font-size-h3-ja: 20px;
+
+--font-size-h1-en: 48px;
+--font-size-h2-en: 32px;
+--font-size-h3-en: 24px;
+
+--font-size-display: 100px;
+
+--line-height-main: 1.8;
+--line-height-tight: 1.2;
+--line-height-wide: 2.0;
+
+--color-main: #282424;
+--color-accent: #dd1c0e;
+--color-a: #282424;
+--color-black: #282424;
+--color-white: #fcfcfc;
+--color-gray: #6d6e71;
+
+--bg-color-main: #fcfcfc;
+--bg-color-header: #fcfcfc;
+--bg-color-footer: #fcfcfc;
+--bg-color-black: #282424;
+
+--mg-bottom-section: 160px;
+--mg-bottom-h1: 100px;
+--mg-bottom-h2: 32px;
+--mg-bottom-content: 64px;
+--mg-bottom-item: 24px;
+}
+
+/* ========================================
+COMMON / SCROLLBAR
+======================================== */
+
+/* Firefox */
+html,
+.contact-confirm {
+    scrollbar-width: thin;
+    scrollbar-color:
+        var(--color-main)
+        transparent;
+}
+
+
+/* Chrome / Safari / Edge */
+html::-webkit-scrollbar,
+.contact-confirm::-webkit-scrollbar {
+    width: 4px;
+}
+
+
+html::-webkit-scrollbar-track,
+.contact-confirm::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+html::-webkit-scrollbar-thumb,
+.contact-confirm::-webkit-scrollbar-thumb {
+    background: var(--color-main);
+    border-radius: 999px;
+}
+
+
+/* ========================================
+COMMON / FOCUS
+======================================== */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
+/* ========================================
+COMMON / CARET
+======================================== */
+
+input,
+textarea {
+    caret-color: var(--color-accent);
+}
+
+/* ========================================
+COMMON / AUTOFILL
+======================================== */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-main);
+
+    -webkit-box-shadow:
+        0 0 0 1000px var(--bg-color-main) inset;
+
+    box-shadow:
+        0 0 0 1000px var(--bg-color-main) inset;
+
+    caret-color: var(--color-accent);
+}
+
+/* ========================================
+COMMON / PLACEHOLDER
+======================================== */
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-gray);
+    opacity: 0.55;
+    font-weight: 300;
+}
+
+/* ========================================
+COMMON / SELECTION
+======================================== */
+
+::selection {
+    background: var(--color-accent);
+    color: var(--bg-color-main);
+}
+
+/*********************html********************/
+html {
+scrollbar-gutter: stable;
+}
+
+/*********************body********************/
+
+/* ========================================
+COMMON / BODY / PC・TB・SP
+短いページでもFooterを画面下部に配置
+======================================== */
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    font-family: var(--font-family-ja);
+    color: var(--color-main);
+    background-color: var(--bg-color-main);
+    font-size: var(--font-size-main);
+    line-height: var(--line-height-main);
+}
+
+/* ========================================
+COMMON / FOOTER POSITION / PC・TB・SP
+======================================== */
+
+#common-footer {
+    margin-top: auto;
+}
+
+
+/* -------------------- HOME PC / TB / SP BACKGROUND -------------------- */
+
+.home-page {
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
+    height: auto;
+    overflow-x: hidden;
+}
+
+
+.home-page::before {
+    content: "";
+
+    position: fixed;
+    inset: -2%;
+
+    background-image: url(/img/home/pc-home-bg.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    filter: url(#home-film-distortion);
+
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+/*********************header********************/
+
+
+header {
+max-width: 211px;
+position: fixed;
+left: 0;
+z-index: 200;
+}
+
+/*********************nav********************/
+
+
+.pc-nav {
+max-width: 211px;
+width: 100%;
+margin-top: 150px;
+}
+
+.pc-nav ul li {
+list-style: none;
+margin-left: 93px;
+
+margin-bottom: 24px;
+}
+
+.pc-nav ul li:last-child {
+    margin-bottom: 0;
+}
+
+.pc-nav ul li a {
+text-decoration: none;
+font-weight: 600;
+font-size: 1.4em;
+color: var(--color-main);
+writing-mode: vertical-rl;
+font-family: var(--font-family-en);
+padding: 10px;
+margin-right: 72px;
+opacity: 1;
+}
+
+.pc-nav ul li:first-child a {
+    padding-top: 0;
+}
+
+
+
+/* ========================================
+COMMON / HAMBURGER NAV / TB・SP
+======================================== */
+
+.hamburger,
+.sp-nav {
+    display: none;
+}
+
+@media screen and (max-width: 1099px) {
+
+    /* -------------------- HEADER / TB・SP -------------------- */
+    header {
+        width: 100%;
+        max-width: none;
+    }
+
+    .pc-nav {
+        display: none;
+    }
+
+    /* -------------------- HOME NAV / TB・SP -------------------- */
+
+    .home-page .pc-nav {
+        display: block;
+        position: fixed;
+        top: min(60px, max(60px, calc(100dvh - 500px)));
+        left: clamp(24px, 5vw, 93px);
+        width: auto;
+        max-width: none;
+        margin-top: 0;
+    }
+
+    .home-page .pc-nav ul li {
+        margin-left: 0;
+        margin-bottom: clamp(8px, 2.5vh, 24px);
+    }
+
+    .home-page .pc-nav ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    .home-page .pc-nav ul li a {
+        font-size: clamp(16px, 2.5vh, 22.4px);
+        padding: clamp(4px, 1vh, 10px);
+        margin-right: 0;
+    }
+
+    /* -------------------- HAMBURGER / TB・SP -------------------- */
+    .hamburger {
+        display: block;
+        position: fixed;
+        top: calc(env(safe-area-inset-top, 0px) + 16px);
+        right: max(16px, env(safe-area-inset-right, 0px));
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        z-index: 201;
+    }
+
+    .hamburger-line {
+        display: block;
+        position: absolute;
+        left: 4px;
+        width: 40px;
+        height: 1px;
+        background: var(--color-main);
+        transition: transform .3s ease, top .3s ease;
+    }
+
+    .hamburger-line:nth-child(1) { top: 6px; }
+    .hamburger-line:nth-child(2) { top: 20px; }
+
+    .hamburger-text {
+        position: absolute;
+        top: 28px;
+        left: 4px;
+        width: 40px;
+        text-align: center;
+        font-family: var(--font-family-en);
+        color: var(--color-main);
+    }
+
+    .hamburger.active .hamburger-line {
+        background: var(--color-white);
+    }
+
+    .hamburger.active .hamburger-line:nth-child(1) {
+        top: 14px;
+        transform: rotate(45deg);
+    }
+
+    .hamburger.active .hamburger-line:nth-child(2) {
+        top: 14px;
+        transform: rotate(-45deg);
+    }
+
+    .hamburger.active .hamburger-text { display: none; }
+
+    /* -------------------- OVERLAY / TB・SP -------------------- */
+    .sp-nav {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        box-sizing: border-box;
+        background: rgb(40 36 36 / .8);
+        z-index: 109;
+        opacity: 0;
+        visibility: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        transition: opacity .3s ease, visibility .3s ease;
+    }
+
+    .sp-nav.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .sp-nav a {
+        color: var(--color-white);
+        text-decoration: none;
+        font-family: var(--font-family-en);
+        font-weight: 400;
+    }
+
+
+    .sp-nav ul {
+        margin-block: 0;
+        padding-inline: 0;
+    }
+
+
+    .sp-nav li { list-style: none; }
+
+
+
+    /* -------------------- MENU CONTENT / TB・SP -------------------- */
+
+    .sp-nav-main,
+    .sp-nav-contact {
+        width: min(680px, calc(100% - 64px));
+        margin-inline: auto;
+        box-sizing: border-box;
+        flex-shrink: 0;
+    }
+
+    /* メニュー全体の上余白 */
+    .sp-nav-main {
+        padding-top: clamp(32px, 6vh, 64px);
+    }
+
+
+
+    .sp-nav-main > li { margin-bottom: 24px; }
+
+    .sp-nav-main > li > a {
+        display: inline-block;
+        padding: 3px 0;
+        font-size: clamp(21px, 2.5vw, 25px);
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    /* -------------------- WORKS / TB・SP -------------------- */
+    .sp-nav-works {
+        display: grid;
+        grid-template-columns: minmax(0, 300px) minmax(90px, 1fr);
+        gap: clamp(16px, 3vw, 32px);
+        min-width: 0;
+        margin-top: 12px;
+        margin-left: 48px;
+        align-items: start;
+    }
+
+    .sp-nav-group-title {
+        margin: 0 0 10px;
+        color: var(--color-white);
+        opacity: .75;
+        font-family: var(--font-family-en);
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: .12em;
+        line-height: 1.4;
+    }
+
+    .sp-nav-category {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 16px;
+        row-gap: 7px;
+    }
+
+    .sp-nav-type {
+        display: grid;
+        gap: 7px;
+    }
+
+    .sp-nav-works a {
+        display: inline-block;
+        padding: 3px 0;
+        font-size: clamp(15px, 1.7vw, 17px);
+        line-height: 1.4;
+    }
+
+    /* ========================================
+    HAMBURGER NAV / SP
+    320px - 374px
+    左右余白・Worksインデント調整
+    ======================================== */
+
+    @media screen and (max-width: 374px) {
+
+        .sp-nav-main,
+        .sp-nav-contact {
+            width: calc(100% - 32px);
+        }
+
+        .sp-nav-works {
+            margin-left: 16px;
+        }
+
+    }
+
+    /* -------------------- SNS / TB・SP -------------------- */
+    .sp-nav-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .sp-nav-contact a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        box-sizing: border-box;
+    }
+
+    .sp-nav-contact img {
+        display: block;
+        width: 25px;
+        height: 25px;
+        filter: brightness(0) invert(1);
+    }
+
+}
+
+
+/********************* pc nav hover ********************/
+
+/* ========================================
+PC NAV HOVER / マウス操作時のみ
+======================================== */
+
+.pc-nav a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .pc-nav a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+/********************* main PC ********************/
+
+.home-page main {
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+}
+
+
+/* ========================================
+HOME IDENTITY / COMMON
+PC・TB・SP共通
+======================================== */
+
+.home-identity {
+    position: static;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+
+    font-family: var(--font-family-en);
+    color: var(--color-main);
+}
+
+
+/* -------------------- HOME BRAND NAME / PC・TB -------------------- */
+
+.home-concept {
+    display: block;
+
+    width: 100%;
+    margin: 0 0 16px;
+
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: normal;
+
+    text-align: left;
+    white-space: nowrap;
+}
+
+
+
+/* -------------------- HOME SUB TEXT / PC・TB -------------------- */
+
+.graphic-designer {
+    display: block;
+
+    width: 100%;
+    margin: 0;
+
+    font-size: var(--font-size-main);
+    font-weight: 300;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+
+    text-align: left;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+HOME IDENTITY / SP
+767px以下
+======================================== */
+
+@media screen and (max-width: 767px) {
+
+    /* -------------------- BRAND NAME / SP -------------------- */
+
+    .home-concept {
+        margin-bottom: 10px;
+
+        font-size: clamp(16px, 4.5vw, 20px);
+        line-height: 1.2;
+    }
+
+    /* -------------------- SUB TEXT / SP -------------------- */
+
+    .graphic-designer {
+        font-size: var(--font-size-main);
+        line-height: 1.4;
+    }
+
+    /* -------------------- HOME CONTACT ICON / SP -------------------- */
+
+    .home-page .contact-btn {
+        display: none;
+    }
+}
+
+
+
+
+
+
+/* ========================================
+HOME LAYOUT / PC・TB・SP
+IDENTITYとNEWSの左端を統一
+======================================== */
+
+.home-page main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-items: stretch;
+
+    width: 100%;
+    min-height: 100dvh;
+    height: auto;
+
+    box-sizing: border-box;
+    padding: 9vh 211px 88px 211px;
+}
+
+/* -------------------- HOME IDENTITY POSITION / PC・TB・SP -------------------- */
+
+.home-page main > h1 {
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+
+    width: min(520px, 100%);
+    margin: 0;
+}
+
+.home-page .home-identity {
+    position: static;
+    margin: 0;
+}
+
+
+
+/* -------------------- HOME NEWS POSITION / PC・TB・SP -------------------- */
+
+.home-news {
+    grid-row: 2;
+    justify-self: end;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    width: min(520px, 100%);
+    margin: 0;
+    padding: 0;
+}
+
+.home-news-list {
+    width: 100%;
+    border-top: none;
+}
+
+
+
+/* ========================================
+HOME NEWS ITEM / PC・TB・SP
+日付・タイトル・矢印を整列
+======================================== */
+
+.home-news-item {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    grid-template-areas: "date title";
+    align-items: center;
+    column-gap: 20px;
+
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: none;
+    box-sizing: border-box;
+}
+
+/* -------------------- HOME NEWS DATE / PC・TB・SP -------------------- */
+
+.home-news .home-news-item .news-date {
+    grid-area: date;
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* -------------------- HOME NEWS TITLE / PC・TB・SP -------------------- */
+
+.home-news .home-news-item .news-title {
+    grid-area: title;
+    display: block;
+
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+}
+
+/* -------------------- HOME NEWS LINK / PC・TB・SP -------------------- */
+
+.home-news .home-news-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    width: 100%;
+    min-width: 0;
+
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+/* -------------------- HOME NEWS LINK TEXT / PC・TB・SP -------------------- */
+
+.home-news-link-text {
+    display: inline-block;
+    min-width: 0;
+    overflow-wrap: anywhere;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* -------------------- HOME NEWS ARROW / PC・TB・SP -------------------- */
+
+.home-news-link .news-link-arrow {
+    width: 12px;
+    flex: 0 0 12px;
+    margin-left: auto;
+    margin-right: 12px;
+}
+
+/* 矢印の先端も2/3に縮小 */
+.home-news-link .news-link-arrow::after {
+    width: 4px;
+}
+
+
+/* -------------------- HOME NEWS HOVER / PC -------------------- */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .home-news-link:hover .news-link-arrow {
+        transform: translateX(8px);
+    }
+
+}
+
+
+/* ========================================
+HOME NEWS VIEW MORE / PC・TB・SP
+NEWSページのリンク表現と統一
+======================================== */
+
+.home-news a.home-news-more {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    align-self: flex-end;
+
+    gap: 6px;
+    width: max-content;
+    margin-top: 18px;
+    margin-right: 12px;
+    padding: 0;
+
+    text-decoration: none;
+    color: var(--color-main);
+
+    white-space: nowrap;
+}
+
+.home-news a.home-news-more:link,
+.home-news a.home-news-more:visited {
+    color: var(--color-main);
+}
+
+.home-news-more .news-link-text {
+    display: inline-block;
+    flex: 0 0 auto;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-small);
+    font-weight: 300;
+}
+
+.home-news-more .news-link-arrow {
+    display: block;
+    width: 12px;
+    flex: 0 0 12px;
+    margin: 0;
+}
+
+/* 矢印の先端 */
+.home-news-more .news-link-arrow::after {
+    width: 4px;
+}
+
+
+/* ========================================
+HOME LAYOUT / TB
+MENU・右固定アイコンのセーフティゾーン確保
+======================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+
+    .home-page main {
+        padding:
+            calc(env(safe-area-inset-top, 0px) + 112px)
+            120px
+            120px
+            160px;
+    }
+
+    .home-news {
+        width: min(520px, 100%);
+    }
+}
+
+
+/* ========================================
+HOME LAYOUT / SP
+固定ナビ・MENU・右固定アイコンを避ける
+======================================== */
+
+@media screen and (max-width: 767px) {
+
+    .home-page main {
+        padding:
+            calc(env(safe-area-inset-top, 0px) + 120px)
+            56px
+            80px
+            130px;
+    }
+
+
+    /* -------------------- HOME NEWS ITEM / SP -------------------- */
+
+    .home-news-item {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "date"
+            "title";
+
+        row-gap: 4px;
+        padding: 12px 0;
+    }
+
+    .home-news .news-title {
+        font-size: 10px;
+    }
+
+    /* -------------------- HOME NEWS VIEW MORE / SP -------------------- */
+
+    .home-page .home-news a.home-news-more {
+        display: none;
+    }
+}
+
+
+
+/********************* footer PC ********************/
+
+
+.contact-btn {
+position: fixed;
+top: auto;
+right: 93px;
+bottom: 56px;
+
+display: flex;
+flex-direction: column;
+gap: 4px;
+
+z-index: 20;
+}
+
+
+.contact-btn img {
+width: 32px;
+height: 32px;
+padding: 10px;
+}
+
+
+
+/* .back-to-top */
+
+.back-to-top {
+border: 0;
+padding: 0;
+background: transparent;
+color: var(--color-main);
+font-family: var(--font-family-en);
+cursor: pointer;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+
+transition: opacity 0.8s ease;
+}
+
+.back-to-top.is-visible {
+opacity: 1;
+visibility: visible;
+pointer-events: auto;
+}
+
+.back-to-top-arrow {
+position: relative;
+width: 32px;
+height: 32px;
+}
+
+.back-to-top-arrow::before,
+.back-to-top-arrow::after {
+content: "";
+position: absolute;
+top: 10px;
+width: 25px;
+height: 1.15px;
+background-color: var(--color-main);
+}
+
+.back-to-top-arrow::before {
+left: 50%;
+transform: rotate(45deg);
+transform-origin: left center;
+}
+
+.back-to-top-arrow::after {
+right: 50%;
+transform: rotate(-45deg);
+transform-origin: right center;
+}
+
+.back-to-top-text {
+margin-top: -6px;
+font-size: var(--font-size-small);
+font-weight: 400;
+}
+
+
+/* ========================================
+COMMON FOOTER / PC・TB・SP
+Privacy Policy + Copyright
+======================================== */
+
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px 8px;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-small);
+    color: var(--color-gray);
+    text-align: right;
+}
+
+
+.footer-bottom small {
+    font-size: inherit;
+    font-weight: 300;
+    color: inherit;
+    
+}
+
+.footer-bottom small::before {
+    content: '|';
+    margin-right: 8px;
+}
+
+.footer-privacy {
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+
+    font-weight: 300;
+}
+
+
+
+/* FOOTER HOVER / PC */
+@media (hover: hover) and (pointer: fine) {
+    .footer-privacy:hover {
+        transform: scaleX(-1);
+    }
+}
+
+/* FOOTER / PC */
+@media screen and (min-width: 1100px) {
+    body:not(.home-page) footer {
+        width: var(--pc-main-width);
+        margin: 64px auto 8px;
+        padding: 0;
+        box-sizing: border-box;
+        text-align: right;
+    }
+}
+
+/* HOME FOOTER / PC・TB・SP */
+.home-page .footer-bottom {
+    position: fixed;
+    right: var(--pc-side-rail);
+    bottom: 24px;
+    z-index: 20;
+}
+
+/* HOME FOOTER / TB */
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+    .home-page .footer-bottom {
+        right: 40px;
+    }
+}
+
+
+/*==================================================
+works
+==================================================*/
+
+.js .work-item {
+    opacity: 0;
+    transform: translateY(250px);
+}
+
+
+
+/* ========================================
+WORKS PAGE / PC
+======================================== */
+
+@media screen and (min-width: 1100px) {
+
+    /* PC固定UI用の左右レーン */
+    :root {
+        --pc-side-rail: 15vw;
+        --pc-main-width: 70vw;
+    }
+
+    .works-page {
+        width: var(--pc-main-width);
+
+        margin: 0 auto;
+        padding-top: 55px;
+
+        box-sizing: border-box;
+    }
+}
+
+
+/* ========================================
+WORKS HEADING
+PC：WORKS + Category
+Categoryは残り幅をすべて使用
+======================================== */
+
+.works-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+
+    width: 100%;
+    margin-bottom: 64px;
+
+    column-gap: 14px;
+    row-gap: 14px;
+}
+
+.works-heading h1 {
+    flex: 0 0 auto;
+
+    margin: 0 36px 0 0;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h1-en);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.works-heading h1 a {
+    display: inline-block;
+
+    text-decoration: none;
+    color: var(--color-main);
+
+    transition: transform 0.3s ease;
+}
+
+/* ========================================
+WORKS / H1 LINK HOVER / マウス操作時のみ
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    .works-heading h1 a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+/* ========================================
+CATEGORY
+WORKSより右側の残り幅をすべて使用
+======================================== */
+
+.works-heading .works-filter {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.works-heading .works-filter-category {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+
+    width: 100%;
+
+    column-gap: 42px;
+    row-gap: 14px;
+}
+
+
+.works-heading .works-filter-category li {
+    flex: 0 0 auto;
+}
+
+.filter-break,
+.works-heading .filter-break {
+    display: none;
+}
+
+.works-filter li {
+    list-style: none;
+}
+
+
+/* ========================================
+COMMON / WORKS FILTER・ABOUT INDEX
+PC・TB・SP 共通
+======================================== */
+
+.works-filter button,
+.about-index a {
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+
+    padding: 0 8px 4px 0;
+
+    font-family: var(--font-family-en);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-main);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* マウス操作時のみ左右反転 */
+@media (hover: hover) and (pointer: fine) {
+    .works-filter button:hover,
+    .about-index a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+/* 選択中の下線 */
+.works-filter button.is-active,
+.about-index a.is-active {
+    border-bottom-color: var(--color-main);
+}
+
+
+/* ========================================
+FLOATING WORKS HEADING
+通常時と同じflexルール
+======================================== */
+
+.works-heading-floating {
+    position: fixed;
+    top: 0;
+    left: 50%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+
+    width: var(--pc-main-width);
+    max-width: none;
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 32px 0 16px;
+
+    column-gap: 24px;
+    row-gap: 14px;
+
+    background-color: var(--bg-color-main);
+
+    z-index: 100;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateX(-50%) translateY(-100%);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.works-heading-floating h1 {
+    flex: 0 0 auto;
+    margin: 0 24px 0 0;
+}
+
+.works-heading-floating .works-filter,
+.works-heading-floating .works-filter-category {
+    display: contents;
+}
+
+.works-heading-floating .works-filter-category li {
+    flex: 0 0 auto;
+}
+
+.works-heading-floating.is-visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateX(-50%) translateY(0);
+}
+
+.works-heading-floating::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    width: 100vw;
+
+    transform: translateX(-50%);
+
+    background-color: var(--bg-color-main);
+
+    z-index: -1;
+}
+
+
+/* ========================================
+TYPE
+PC：右サイドレーン中央に配置
+======================================== */
+
+@media screen and (min-width: 1100px) {
+
+    .works-page .works-filter-type,
+    .about-index {
+        position: fixed;
+
+        top: 150px;
+
+        width: 130px;
+        right: calc((var(--pc-side-rail) - 130px) / 2);
+
+        transform: none;
+
+        z-index: 20;
+    }
+}
+
+.works-page .works-filter-type li {
+    margin-bottom: 18px;
+
+    font-family: var(--font-family-en);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.works-page .works-filter-type button {
+    font-size: 22px;
+}
+
+.works-filter-type button::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 0.5em;
+    height: 3px;
+
+    margin-right: 0.2em;
+    margin-bottom: 4px;
+
+    background: currentColor;
+
+    vertical-align: middle;
+}
+
+
+/* ========================================
+WORKS LIST GRID
+PC：4カラム
+空きスペースを後続のS作品で埋める
+======================================== */
+
+.works-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    grid-auto-flow: row dense;
+
+    gap: clamp(20px, 2vw, 29px);
+
+    width: 100%;
+    min-width: 0;
+
+    align-items: center;
+}
+
+.work-item {
+    margin: 0;
+    min-width: 0;
+}
+
+.work-item-large {
+    grid-column: span 2;
+}
+
+.work-item a {
+    display: block;
+    width: 100%;
+}
+
+/* ========================================
+WORKS ITEM IMAGE / PC・TB・SP
+======================================== */
+
+.work-item img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+
+/********************* Works detail PC ********************/
+
+/*==================================================
+work-001以降ページ共通 PC
+==================================================*/
+
+
+/* h2 h3 */
+.works-title {
+font-family: var(--font-family-ja);
+}
+
+.works-title h2 {
+font-size: var(--font-size-h3-ja);
+font-weight: 600;
+letter-spacing: 0.1em;
+}
+
+.works-title h2::before {
+content: "";
+border-left: 5px solid var(--color-main);
+margin-right: 0.7em;
+}
+
+.works-title h3 {
+font-size: var(--font-size-h1-ja);
+font-weight: 800;
+margin: -10px 0 30px;
+}
+
+
+/* ========================================
+WORK DETAIL / MAIN VISUAL / PC TB
+======================================== */
+
+.works-cover {
+position: relative;
+left: 50%;
+width: 100vw;
+margin-left:-50vw;
+margin-bottom:64px;
+
+}
+
+.works-cover img {
+width: 100%;
+height: auto;
+display: block;
+}
+
+
+
+/* ========================================
+WORK DETAIL / MAIN VISUAL / SP
+767px以下
+全作品共通・正方形クリップ
+======================================== */
+@media screen and (max-width: 767px) {
+
+    .works-detail-page .works-cover {
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+    }
+
+    .works-detail-page .works-cover picture {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .works-detail-page .works-cover img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+}
+
+
+
+
+
+/* .works-detail */
+.works-detail {
+width: 100%;
+display: flex;
+justify-content: space-between;
+}
+
+/* ビジュアル-その他 */
+
+.works-detail .works-images img {
+width: 505px;
+margin-bottom: 55px;
+}
+
+/* .works-statement */
+
+.works-statement {
+    width: calc(
+        (
+            var(--pc-main-width) -
+            clamp(32px, 4vw, 64px)
+        ) / 2.35 - 24px
+    );
+
+    flex-shrink: 0;
+
+    margin-top: var(--mg-bottom-section) ;
+
+    margin-bottom: 343px;
+}
+
+
+.works-statement dl dt {
+font-family: var(--font-family-en);
+font-size: var(--font-size-main);
+font-weight: 600;
+margin-bottom: 10px;
+}
+
+.works-statement dl dd {
+font-family: var(--font-family-ja);
+font-size: var(--font-size-main);
+font-weight: 300;
+
+margin-bottom: 59px;
+}
+
+
+
+.design dd {
+text-align: justify;
+text-justify: inter-ideograph;
+}
+
+.works-statement .tools dd {
+font-family: var(--font-family-en);
+}
+
+.works-statement .url dd a {
+    text-decoration: none;
+    color: var(--color-main);
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 300;
+
+    padding-bottom: 2.5px;
+    border-bottom: 1px solid var(--color-main);
+}
+
+
+/*--------------------------------
+PROCESS TIMELINE
+--------------------------------*/
+
+.process dd {
+position: relative;
+
+line-height: var(--line-height-main);
+
+margin-left: 30px;
+padding-left: 30px;
+}
+
+
+/* 各工程 */
+
+.process dd p {
+position: relative;
+
+margin-bottom: 35px;
+}
+
+.process dd p:last-child {
+margin-bottom: 0;
+}
+
+
+/* ● */
+
+.process dd p::before {
+content: "";
+
+position: absolute;
+
+top: 0.9em;
+left: -35px;
+
+width: 8px;
+height: 8px;
+
+border-radius: 50%;
+
+background-color: var(--color-main);
+
+transform: translateY(-50%);
+
+z-index: 2;
+}
+
+
+/* ●と●をつなぐ縦線 */
+
+.process dd p::after {
+content: "";
+
+position: absolute;
+
+top: 0.9em;
+left: -31px;
+
+width: 0.5px;
+
+height: calc(100% + 35px);
+
+background-color: var(--color-main);
+
+z-index: 1;
+}
+
+
+/* 最後の工程から下には線を出さない */
+
+.process dd p:last-child::after {
+content: none;
+}
+
+
+/*--------------------------------
+PROCESS / SCROLL ANIMATION
+--------------------------------*/
+
+/* JS有効時だけ、未到達の●を隠す */
+.js .process dd p::before {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.4);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 到達した●
+   ※点滅はさせない */
+.js .process dd p.is-process-reached::before {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+}
+
+
+/* 既存の区間線は非表示 */
+.js .process dd p::after {
+    opacity: 0;
+}
+
+
+/* スクロールに合わせて伸びる一本の線 */
+.process-progress-line {
+    position: absolute;
+
+    top: 0.9em;
+    left: -1px;
+
+    width: 0.5px;
+    height: 0;
+
+    background-color: var(--color-main);
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* Process文字 */
+.js .process dd p .process-type-text {
+    visibility: hidden;
+}
+
+
+/* 到達後、入力領域を表示 */
+.js .process dd p.is-process-reached .process-type-text {
+    visibility: visible;
+}
+
+
+/* タイピングカーソル */
+.typewriter-cursor {
+    display: inline-block;
+
+    width: 1px;
+    height: 1em;
+
+    margin-left: 2px;
+
+    background-color: currentColor;
+
+    vertical-align: -0.08em;
+
+    animation:
+        typewriter-cursor-blink 0.8s steps(1, end) infinite;
+}
+
+
+/* 入力完了後はカーソルを消す */
+.typewriter-cursor.is-finished {
+    display: none;
+}
+
+
+@keyframes typewriter-cursor-blink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* 動きを減らす設定 */
+@media (prefers-reduced-motion: reduce) {
+
+    .js .process dd p::before {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+        transition: none;
+    }
+
+    .js .process dd p .process-type-text {
+        visibility: visible;
+    }
+
+    .process-progress-line {
+        display: none;
+    }
+
+    .typewriter-cursor {
+        display: none;
+        animation: none;
+    }
+
+}
+
+
+
+/* ========================================
+WORK DETAIL / TYPE LABEL / PC・TB・SP
+======================================== */
+
+.work-type-label {
+    margin-bottom: 48px;
+}
+
+.work-type-label a {
+    display: inline-block;
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-small);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Typeの前のハイフン */
+.work-type-label a::before {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 1.8px;
+    margin-bottom: 2px;
+    margin-right: 0.2em;
+    background: currentColor;
+    vertical-align: middle;
+}
+
+/* Typeの後ろのwork */
+.work-type-label a::after {
+    content: "work";
+    display: inline-block;
+    margin-left: 0.3em;
+}
+
+
+
+/* ========================================
+WORK DETAIL / CATEGORY / PC・TB・SP
+======================================== */
+
+.category-and-type {
+    margin-top: 120px;
+}
+
+.category-and-type a {
+font-family: var(--font-family-en);
+font-size: var(--font-size-small);
+font-weight: 400;
+color: var(--color-main);
+text-decoration: none;
+margin-right: 10px;
+}
+
+/* ========================================
+WORK DETAIL / META LINKS / PC・TB・SP
+既存のCategory・Type表現を維持
+======================================== */
+
+.work-meta a {
+    color: inherit;
+    text-decoration: none;
+    font-family: var(--font-family-en);
+    font-weight: 300;
+    margin-right: 8px;
+
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .work-meta a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+/* TYPE / PC・TB・SP
+   既存のハイフンとworkを維持 */
+
+.work-meta-type a::before {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 1px;
+    margin-bottom: 3px;
+    margin-right: 0.2em;
+    background: currentColor;
+    vertical-align: middle;
+}
+
+.work-meta-type a::after {
+    content: "work";
+    display: inline-block;
+    margin-left: 0.3em;
+}
+
+.work-meta [hidden] {
+    display: none;
+}
+
+
+
+/* ========================================
+WORK DETAIL / META SPACING / PC・TB・SP
+Category・Type・Dateのみ余白調整
+======================================== */
+
+.works-statement .work-meta {
+    margin-bottom: 59px;
+}
+
+.works-statement .work-meta dd {
+    margin-bottom: 24px;
+}
+
+.works-statement .work-meta > div:last-child dd {
+    margin-bottom: 0;
+}
+
+.works-statement .work-meta dt {
+    margin-bottom: 0px;
+}
+
+
+
+
+/* ========================================
+.works-navigation PC・TB・SP
+既存の文字サイズ・余白を継承
+======================================== */
+
+
+.work-navigation {
+    width: calc(
+        (
+            var(--pc-main-width) -
+            clamp(32px, 4vw, 64px)
+        ) / 2.35 - 24px
+    );
+
+    margin-left: auto;
+    margin-bottom: var(--mg-bottom-section);
+}
+
+/* ========================================
+WORK DETAIL / MAIN VISUAL NAVIGATION / PC
+MAIN下ナビ専用
+======================================== */
+
+.work-navigation--main {
+    position: relative;
+    z-index: 1;
+
+    margin-top: -64px;
+    margin-bottom: 0;
+
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+}
+
+/* WORK DETAIL / MAIN VISUAL NAVIGATION / PC */
+.work-navigation--main ul {
+    width: 100%;
+}
+
+.work-navigation ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 100%;
+
+    gap: 32px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.work-navigation ul li {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.work-navigation ul li a {
+    display: inline-block;
+
+    text-decoration: none;
+    font-family: var(--font-family-en);
+    font-weight: 300;
+    font-size: var(--font-size-small);
+    color: var(--color-main);
+    white-space: nowrap;
+}
+
+
+/* ========================================
+WORK DETAIL / NAVIGATION HOVER
+文字反転 + 矢印移動
+マウス操作時のみ
+======================================== */
+
+/* TEXT */
+.work-navigation ul li a span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* ARROW */
+.prev-work::before,
+.next-work::after {
+    transition: transform 0.3s ease;
+}
+
+/* HOVER / マウス操作時のみ */
+@media (hover: hover) and (pointer: fine) {
+
+    .work-navigation ul li a:hover {
+        transform: none;
+    }
+
+    .work-navigation ul li a:hover span {
+        transform: scaleX(-1);
+    }
+
+    /* PREV：左へ移動 */
+    .prev-work:hover::before {
+        transform:
+            translateX(-3px)
+            skewX(-45deg);
+    }
+
+    /* NEXT：右へ移動 */
+    .next-work:hover::after {
+        transform:
+            translateX(3px)
+            skewX(45deg);
+    }
+
+}
+
+
+/* ========================================
+WORK DETAIL NAVIGATION ARROW / PC
+Prev ← / Next →
+======================================== */
+
+.prev-work::before,
+.next-work::after {
+    content: "";
+    display: inline-block;
+
+    position: relative;
+    top: -4px;
+
+    width: 18px;
+    height: 6px;
+
+    border-bottom: 1px solid var(--color-main);
+
+    vertical-align: middle;
+}
+
+.prev-work::before {
+    margin-right: 10px;
+
+    border-left: 1px solid var(--color-main);
+
+    transform: skewX(-45deg);
+    transform-origin: left bottom;
+}
+
+.next-work::after {
+    margin-left: 10px;
+
+    border-right: 1px solid var(--color-main);
+
+    transform: skewX(45deg);
+    transform-origin: right bottom;
+}
+
+
+/* .work-carousel */
+
+.work-carousel-nav {
+width: 100%;
+text-align: center;
+}
+
+
+/* Other works 見出し */
+
+.work-carousel-nav > span {
+display: inline-block;
+
+font-family: var(--font-family-en);
+font-weight: 600;
+font-size: 1.3em;
+
+margin-bottom: 32px;
+}
+
+.work-carousel-nav > span a {
+    display: inline-block;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* OTHER WORKS HOVER / マウス操作時のみ */
+@media (hover: hover) and (pointer: fine) {
+    .work-carousel-nav > span a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+/*
+========================================
+OTHER WORKS CAROUSEL
+========================================
+
+・作品が少ない場合 → 中央配置
+・作品が多い場合 → 横スクロール
+・無限ループなし
+========================================
+*/
+
+
+.work-carousel {
+position: relative;
+
+left: 50%;
+width: 100vw;
+margin-left: -50vw;
+
+padding: 30px 0;
+
+overflow-x: auto;
+overflow-y: hidden;
+
+scrollbar-width: none;
+
+cursor: grab;
+
+user-select: none;
+
+touch-action: pan-y;
+}
+
+
+.work-carousel:active {
+cursor: grabbing;
+}
+
+
+.work-carousel::-webkit-scrollbar {
+display: none;
+}
+
+
+/*
+========================================
+作品リスト
+========================================
+
+min-width: 100% にすることで
+作品が少ないときも画面幅を確保。
+
+justify-content: center で
+少数作品を中央配置。
+
+作品数が増えて内容幅が100vwを超えたら
+width: max-content によって
+そのまま横方向へ伸びる。
+========================================
+*/
+
+.work-carousel ul {
+display: flex;
+align-items: center;
+justify-content: center;
+
+gap: 32px;
+
+width: max-content;
+min-width: 100%;
+
+margin: 0;
+padding: 0;
+}
+
+
+/*
+========================================
+各作品
+========================================
+*/
+
+.work-carousel ul li {
+flex: 0 0 auto;
+
+list-style: none;
+
+will-change: transform;
+}
+
+
+/*
+カルーセル全体hover時の
+微細なランダム移動は
+JSからaへ適用
+*/
+
+.work-carousel ul li a {
+display: block;
+
+transition:
+    transform 0.8s
+    cubic-bezier(0.22, 1, 0.36, 1);
+
+will-change: transform;
+}
+
+
+/*
+========================================
+作品画像
+========================================
+*/
+
+.work-carousel ul li img {
+display: block;
+
+width: 160px;
+height: auto;
+
+transition:
+    transform 0.65s
+    cubic-bezier(0.22, 1, 0.36, 1);
+
+will-change: transform;
+
+pointer-events: none;
+
+-webkit-user-drag: none;
+user-select: none;
+}
+
+
+/*　1作品hover　*/
+
+/* ========================================
+OTHER WORKS / IMAGE HOVER
+マウス操作時のみ浮き上がり・拡大
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .work-carousel ul li a:hover img {
+        transform:
+            translateY(-7px)
+            scale(1.025);
+    }
+
+}
+
+/* ========================================
+OTHER WORKS CAROUSEL / PC・TB・SP
+ページ全体の横はみ出しを防止
+======================================== */
+
+html:has(.work-carousel) {
+    overflow-x: clip;
+}
+
+
+/********************* contact  PC ********************/
+
+
+/* ========================================
+CONTACT / PC
+======================================== */
+
+@media screen and (min-width: 1100px) {
+
+    .contact-page {
+        width: var(--pc-main-width);
+        margin: 0 auto;
+        padding-top: 55px;
+        box-sizing: border-box;
+    }
+
+}
+
+
+/* ========================================
+HEADING
+======================================== */
+
+.contact-page h1 {
+    margin: 0 0 var(--mg-bottom-section);
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h1-en);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.contact-page h1 a {
+    display: inline-block;
+
+    color: var(--color-main);
+    text-decoration: none;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* ========================================
+CONTACT / H1 LINK HOVER / PC・TB・SP
+マウス操作時のみ左右反転
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    .contact-page h1 a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+
+
+/* ========================================
+CONTACT WRAPPER
+======================================== */
+
+.contact-wrapper {
+    width: 600px;
+    margin: 0 auto;
+}
+
+
+/* ========================================
+LEAD
+======================================== */
+
+.contact-lead {
+    margin-bottom: 96px;
+}
+
+.contact-lead h2 {
+    margin: 0 0 var(--mg-bottom-content);
+
+    font-family: var(--font-family-ja);
+    font-size: clamp(20px, 2.6vw, 32px);
+    font-weight: 600;
+    line-height: 1.5;
+
+    min-height: 3em;
+}
+
+.contact-lead p {
+    margin: 0;
+    line-height: var(--line-height-main);
+}
+
+.contact-lead p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-lead a {
+    display: inline-block;
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    color: var(--color-main);
+    text-decoration: none;
+
+    border-bottom: 1.4px solid currentColor;
+
+    transition: transform 0.3s ease;
+}
+
+/* -------------------- CONTACT LEAD SUB LINK -------------------- */
+
+.contact-lead a.contact-lead-sub-link {
+    border-bottom: none;
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+
+/* CONTACT LEAD HOVER / マウス操作時のみ */
+@media (hover: hover) and (pointer: fine) {
+    .contact-lead a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+/* -------------------- REQUIRED NOTE -------------------- */
+
+.contact-required-note {
+    margin-top: 6px !important;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    color: var(--color-main);
+}
+
+.contact-required-note span {
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+
+/* ========================================
+FORM
+======================================== */
+
+.contact-form {
+    width: 100%;
+}
+
+
+/* 1 field
+   label
+   ↓
+   input / textarea
+   ───────── border
+   ↓
+   next field
+*/
+
+.contact-field {
+    margin-bottom: var(--mg-bottom-content);
+}
+
+
+/* ========================================
+LABEL
+======================================== */
+
+.contact-form label {
+    display: block;
+
+    margin: 0 0 8px;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.contact-form .required {
+    margin-left: 0.25em;
+
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+
+/* ========================================
+INPUT / TEXTAREA
+======================================== */
+
+.contact-form input,
+.contact-form textarea {
+    display: block;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    border: 0;
+    border-bottom: 1px solid var(--color-main);
+    border-radius: 0;
+
+    outline: none;
+    background: transparent;
+
+    color: var(--color-main);
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    line-height: var(--line-height-main);
+}
+
+
+/* Name / Company / E-mail */
+
+.contact-form input {
+    height: 28px;
+    padding-top: 0;
+    padding-bottom: 8px;
+}
+
+
+/* ========================================
+TEXTAREA / AUTO GROW 
+======================================== */
+
+/*
+入力内容に合わせてJSで高さを自動調整する。
+
+・ご相談・ご依頼内容 / その他
+  → 初期高さ 120px
+
+・ご依頼の制作物 / 納期・スケジュール
+  → 初期高さ 72px
+
+・初回打ち合わせ可能日
+  → 初期高さ 72px
+
+入力が増えた場合は、
+textarea内部をスクロールさせず下方向へ伸長する。
+*/
+
+.contact-form textarea {
+    height: auto;
+
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    overflow-y: hidden;
+    resize: none;
+}
+
+
+/* ご相談・ご依頼内容 */
+
+.contact-field-inquiry textarea {
+    min-height: 120px;
+}
+
+
+/* ご依頼の制作物 / 納期・スケジュール */
+
+.contact-field-compact-textarea textarea {
+    min-height: 72px;
+}
+
+
+/* -------------------- Meeting -------------------- */
+
+.contact-field-label {
+    margin: 0 0 20px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.contact-meeting-item {
+    width: auto;
+    margin-left: clamp(16px, 4vw, 40px);
+    margin-right: clamp(16px, 4vw, 40px);
+    margin-bottom: 20px;
+}
+
+.contact-meeting-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-meeting-item label {
+    margin-bottom: 8px;
+
+    font-family: var(--font-family-ja);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.contact-meeting-item textarea {
+    min-height: 72px;
+}
+
+
+/* その他 */
+
+.contact-field-message textarea {
+    min-height: 120px;
+}
+
+/* focus */
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-bottom-width: 2px;
+}
+
+/* Message scrollbar */
+
+.contact-form textarea {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gray) transparent;
+}
+
+/* Chrome / Safari */
+
+.contact-form textarea::-webkit-scrollbar {
+    width: 0.5px;
+}
+
+.contact-form textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.contact-form textarea::-webkit-scrollbar-thumb {
+    background: var(--color-gray);
+    border-radius: 0;
+}
+
+
+/* ========================================
+MESSAGE
+======================================== */
+
+.contact-field-message {
+    margin-bottom: 32px;
+}
+
+
+
+/* ========================================
+PRIVACY
+======================================== */
+
+.contact-privacy {
+    margin: 0 0 32px;
+}
+
+.contact-privacy p {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 2;
+}
+
+.contact-privacy a {
+    color: var(--color-main);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-right: 3px;
+
+    transition: transform 0.3s ease;
+
+    display: inline-block;
+}
+
+
+/* CONTACT PRIVACY HOVER / マウス操作時のみ */
+@media (hover: hover) and (pointer: fine) {
+    .contact-privacy a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+
+/* ========================================
+SEND
+======================================== */
+
+.contact-submit {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--color-main);
+
+    font-family: var(--font-family-en);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+
+    cursor: pointer;
+    margin: var(--mg-bottom-content) 0 var(--mg-bottom-item) 0;
+}
+
+
+/* Send text */
+
+.contact-submit-label {
+    display: inline-block;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* CSS arrow */
+
+.contact-submit-arrow {
+    position: relative;
+
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    margin-top: 1px;
+
+    transition: transform 0.3s ease;
+}
+
+.contact-submit-arrow::before {
+    content: "";
+
+    position: absolute;
+    left: 2px;
+    bottom: 3px;
+
+    width: 20px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform: rotate(-35deg);
+    transform-origin: left center;
+}
+
+.contact-submit-arrow::after {
+    content: "";
+
+    position: absolute;
+    top: 2px;
+    right: -1px;
+
+    width: 7px;
+    height: 1px;
+
+    background: currentColor;
+}
+
+
+
+/* ========================================
+CONTACT / SEND HOVER / PC・TB・SP
+マウス操作時のみ文字反転・矢印移動
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .contact-submit:hover .contact-submit-label {
+        transform: scaleX(-1);
+    }
+
+    .contact-submit:hover .contact-submit-arrow {
+        transform: translate(3px, -3px);
+    }
+
+}
+
+/* ==================================================
+   CONTACT / SEND ERROR（PC・TB・SP共通）
+================================================== */
+
+.contact-send-error {
+    width: 100%;
+    flex-basis: 100%;
+    margin-top: 16px;
+    color: var(--color-accent);
+    font-size: 14px;
+    line-height: 1.7;
+}
+.contact-send-error[hidden] {
+    display: none;
+}
+
+
+/* ========================================
+CONTACT CONFIRM / MODAL
+======================================== */
+
+.contact-confirm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 6vh 6vw;
+    box-sizing: border-box;
+
+    background: rgba(40, 36, 36, 0.35);
+
+    overflow-y: auto;
+}
+
+.contact-confirm-modal[hidden] {
+    display: none;
+}
+
+.contact-confirm {
+    width: min(680px, 100%);
+    max-height: 88vh;
+
+    margin: 0;
+    padding: 48px;
+
+    box-sizing: border-box;
+
+    background: var(--bg-color-main);
+
+    overflow-y: auto;
+}
+
+
+/* ========================================
+CONTACT CONFIRM / MODAL / SP
+767px以下
+画面内に収め、内容は内部スクロール
+======================================== */
+
+@media screen and (max-width: 767px) {
+
+    .contact-confirm-modal {
+        padding:
+            max(16px, env(safe-area-inset-top, 0px))
+            16px
+            max(16px, env(safe-area-inset-bottom, 0px));
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .contact-confirm {
+        width: 100%;
+        min-width: 0;
+        max-height: calc(100dvh - 32px);
+        max-height: calc(
+            100dvh
+            - max(16px, env(safe-area-inset-top, 0px))
+            - max(16px, env(safe-area-inset-bottom, 0px))
+        );
+
+        padding: 32px 24px;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+        overflow-wrap: anywhere;
+    }
+
+}
+
+
+/* -------------------- MODAL SCROLLBAR -------------------- */
+
+/* Firefox */
+.contact-confirm {
+    scrollbar-width: thin;
+    scrollbar-color:
+        rgba(40, 36, 36, 0.25)
+        transparent;
+}
+
+
+/* Chrome / Safari / Edge */
+.contact-confirm::-webkit-scrollbar {
+    width: 4px;
+}
+
+
+.contact-confirm::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.contact-confirm::-webkit-scrollbar-thumb {
+    background: rgba(40, 36, 36, 0.25);
+    border-radius: 999px;
+}
+
+
+.contact-confirm::-webkit-scrollbar-thumb:hover {
+    background: rgba(40, 36, 36, 0.45);
+}
+
+/********************* Contact Confirm ********************/
+
+
+
+.contact-confirm h2 {
+    margin: 0 0 var(--mg-bottom-h2);
+    text-align: center;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+
+/* -------------------- Item -------------------- */
+
+.contact-confirm-item {
+    margin-bottom: var(--mg-bottom-content);
+    padding: 0 0 8px;
+
+    border-top: 0;
+    border-bottom: 1px solid var(--color-main);
+}
+
+.contact-confirm-item:has(.contact-confirm-message) {
+    border-bottom: 1px solid var(--color-main);
+}
+
+.contact-confirm-label {
+    margin: 0 0 8px;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.contact-confirm-value {
+    margin: 0;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 400;
+    line-height: var(--line-height-main);
+
+    overflow-wrap: anywhere;
+}
+
+.contact-confirm-meeting-item:first-of-type {
+    margin-top: 20px;
+}
+
+.contact-confirm-meeting {
+    border-bottom: 0;
+}
+
+
+.contact-confirm-meeting-item .contact-confirm-value {
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-main);
+}
+
+
+/* Messageの改行を保持 */
+
+.contact-confirm-message {
+    min-height: 120px;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+}
+
+
+/* -------------------- Actions -------------------- */
+
+.contact-confirm-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-top: 40px;
+}
+
+
+/* button共通 */
+
+.contact-confirm-back,
+.contact-confirm-send {
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--color-main);
+
+    cursor: pointer;
+}
+
+
+/* 修正する */
+
+.contact-confirm-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--color-main);
+
+    font-family: var(--font-family-en);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* CONTACT CONFIRM BACK HOVER / マウス操作時のみ */
+@media (hover: hover) and (pointer: fine) {
+    .contact-confirm-back:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+
+.contact-confirm-back-arrow {
+    position: relative;
+    display: block;
+
+    width: 22px;
+    height: 10px;
+}
+
+.contact-confirm-back-arrow::before {
+    content: "";
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+
+    width: 22px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform: translateY(-50%);
+}
+
+.contact-confirm-back-arrow::after {
+    content: "";
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+
+    width: 8px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform: rotate(-35deg);
+    transform-origin: left center;
+}
+
+/* Send */
+
+.contact-confirm-send {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    font-family: var(--font-family-en);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+
+    margin-right: 32px;
+}
+
+.contact-confirm-send > span:first-child {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+
+/* ========================================
+CONTACT / CONFIRM SEND HOVER / PC・TB・SP
+マウス操作時のみ文字反転・矢印移動
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .contact-confirm-send:hover > span:first-child {
+        transform: scaleX(-1);
+    }
+
+    .contact-confirm-send:hover .contact-submit-arrow {
+        transform: translate(3px, -3px);
+    }
+
+}
+
+
+/* ========================================
+CONFIRM / MEETING
+======================================== */
+
+.contact-confirm-meeting-item {
+    width: auto;
+
+    margin-left: clamp(16px, 4vw, 40px);
+    margin-right: clamp(16px, 4vw, 40px);
+    margin-bottom: 20px;
+}
+
+.contact-confirm-meeting-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-confirm-sub-label {
+    margin: 0 0 8px;
+
+    font-family: var(--font-family-ja);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.contact-confirm-label {
+    font-weight: 600;
+}
+
+/* 日本語の確認項目 */
+.contact-confirm-item:nth-child(n+5) .contact-confirm-label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.contact-sending,
+.contact-success {
+    min-height: 420px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.contact-sending[hidden],
+.contact-success[hidden] {
+    display: none;
+}
+
+/* -------------------------
+   Sending
+------------------------- */
+
+.contact-sending-plane {
+    margin-bottom: 24px;
+
+    font-family: var(--font-family-en);
+    font-size: 32px;
+    line-height: 1;
+
+    animation: contact-plane-flight 1.4s ease-in-out infinite;
+}
+
+.contact-sending-text {
+    margin: 0;
+
+    font-family: var(--font-family-en);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+@keyframes contact-plane-flight {
+    0% {
+        transform: translate(-8px, 6px);
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(12px, -8px);
+        opacity: 0;
+    }
+}
+
+/* -------------------------
+   Success
+------------------------- */
+
+.contact-success-mail {
+    position: relative;
+
+    width: 48px;
+    height: 46px;
+
+    margin-bottom: 24px;
+}
+
+
+/* -------------------------
+   封筒
+   右側のContactアイコンと同じ画像を使用
+------------------------- */
+
+.contact-success-mail-icon {
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    display: block;
+
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+
+    object-fit: contain;
+
+    transform: translateX(-50%);
+}
+
+
+/* -------------------------
+   封筒の上の三本線
+   中央から放射状に開く
+------------------------- */
+
+.contact-success-mail-line {
+    position: absolute;
+
+    width: 1px;
+    height: 10px;
+
+    background: currentColor;
+
+    transform-origin: center bottom;
+}
+
+
+/* 左 */
+
+.contact-success-mail-line.line-01 {
+    top: -1px;
+    left: 17px;
+
+    transform: rotate(-40deg);
+}
+
+
+/* 中央 */
+
+.contact-success-mail-line.line-02 {
+    top: -3px;
+    left: 24px;
+
+    transform: rotate(0deg);
+}
+
+
+/* 右 */
+
+.contact-success-mail-line.line-03 {
+    top: -1px;
+    left: 31px;
+
+    transform: rotate(40deg);
+}
+
+.contact-success h2 {
+    margin: 0 0 24px;
+
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.contact-success-message {
+    margin: 0 0 48px;
+
+    font-size: var(--font-size-main);
+    line-height: var(--line-height-main);
+}
+
+.contact-success-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--color-main);
+
+    font-family: var(--font-family-ja);
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-sending-plane {
+        animation: none;
+    }
+}
+
+
+
+
+/********************* PRIVACY PC ********************/
+
+/* ========================================
+PRIVACY POLICY / PC
+CONTACTのページ骨格を継承
+======================================== */
+
+@media screen and (min-width: 1100px) {
+
+    .privacy-page {
+        width: var(--pc-main-width);
+        margin: 0 auto;
+        padding-top: 55px;
+        box-sizing: border-box;
+    }
+
+}
+
+
+/* ========================================
+PRIVACY HEADING / PC
+======================================== */
+
+.privacy-page h1 {
+    margin: 0 0 var(--mg-bottom-section);
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h1-en);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.privacy-page h1 a {
+    display: inline-block;
+
+    color: var(--color-main);
+    text-decoration: none;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* ========================================
+PRIVACY / H1 LINK HOVER / PC・TB・SP
+マウス操作時のみ左右反転
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    .privacy-page h1 a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+/* ========================================
+PRIVACY WRAPPER / PC
+CONTACTと同じ本文幅
+======================================== */
+
+.privacy-wrapper {
+    width: 600px;
+    margin: 0 auto;
+}
+
+
+/* ========================================
+PRIVACY LEAD / PC
+======================================== */
+
+.privacy-lead {
+    margin-bottom: 96px;
+}
+
+.privacy-lead h2 {
+    margin: 0 0 var(--mg-bottom-h2);
+
+    font-family: var(--font-family-ja);
+    font-size: clamp(20px, 2.6vw, 32px);
+    font-weight: 600;
+    line-height: 1.65;
+    letter-spacing: 0.08em;
+}
+
+.privacy-lead p {
+    margin: 0;
+    line-height: var(--line-height-main);
+}
+
+
+
+/* ========================================
+PRIVACY SECTION / PC
+======================================== */
+
+.privacy-section {
+    margin-bottom: var(--mg-bottom-content);
+}
+
+.privacy-section:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ========================================
+PRIVACY SECTION HEADING / PC
+SERVICE h2と同じサイズ・ウェイト
+======================================== */
+
+.privacy-section h2 {
+    margin: 0 0 var(--mg-bottom-item);
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-h3-ja);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+/* ========================================
+PRIVACY SECTION NUMBER / PC・TB・SP
+数字のみJost
+======================================== */
+
+.privacy-number {
+    display: inline-block;
+    margin-right: 0.5em;
+
+    font-family: var(--font-family-en);
+    font-weight: 600;
+}
+
+.privacy-section p {
+    margin: 0 0 1em;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 400;
+    line-height: var(--line-height-main);
+}
+
+.privacy-section p:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-section p a {
+    text-decoration: none;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 400;
+    line-height: var(--line-height-main);
+    border-bottom: 1px solid var(--color-main);
+    padding-bottom: 1px;
+}
+
+.privacy-section p a:hover {
+    transform: none;
+}
+
+
+
+/* ========================================
+PRIVACY SUBSECTION / PC
+h2配下のh3以下
+CONTACT「初回打ち合わせ可能日」と同じインデント
+======================================== */
+
+.privacy-subsection {
+    width: auto;
+    margin-bottom: var(--mg-bottom-item);
+}
+
+.privacy-subsection:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-subsection h3 {
+    margin: 0 0 8px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 400;
+    line-height: var(--line-height-main);
+}
+
+.privacy-subsection h3::before {
+    content: "";
+
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right: 10px;
+
+    border-radius: 50%;
+    background-color: currentColor;
+
+    vertical-align: middle;
+}
+
+
+.privacy-subsection .detail {
+    margin-left: 1em;
+}
+
+.privacy-section a {
+    font-family: var(--font-family-en);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+/* ========================================
+PRIVACY LINK / PC・TB・SP
+文中リンク：マウス操作時のみ左右反転
+======================================== */
+
+.privacy-section a {
+    display: inline-block;
+
+    color: var(--color-main);
+    text-decoration: none;
+
+    border-bottom: 1px solid currentColor;
+
+    transition: transform 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .privacy-section a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+
+/* ========================================
+PRIVACY BACK TO CONTACT / PC・TB・SP
+======================================== */
+
+.privacy-back {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    margin-top: var(--mg-bottom-section);
+}
+
+.privacy-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--color-main);
+    text-decoration: none;
+
+    font-family: var(--font-family-en);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.privacy-back-arrow {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+
+    width: 22px;
+    height: 10px;
+}
+
+.privacy-back-arrow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+
+    transform: translateY(-50%);
+}
+
+.privacy-back-arrow::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    width: 8px;
+    height: 1px;
+    background: currentColor;
+
+    transform: rotate(-35deg);
+    transform-origin: left center;
+}
+
+/* ========================================
+PRIVACY BACK ANIMATION / PC・TB・SP
+======================================== */
+
+.privacy-back-arrow {
+    transition: transform 0.3s ease;
+}
+
+.privacy-back-label {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* PRIVACY BACK HOVER / マウス操作時のみ */
+@media (hover: hover) and (pointer: fine) {
+
+    .privacy-back-link:hover .privacy-back-arrow {
+        transform: translateX(-6px);
+    }
+
+    .privacy-back-link:hover .privacy-back-label {
+        transform: scaleX(-1);
+    }
+
+}
+
+
+
+
+
+/********************* about PC ********************/
+
+
+.about-page {
+    box-sizing: border-box;
+}
+
+.about-profile {
+    width: 100%;
+
+}
+
+.about-page h1 {
+    display: block;
+    margin: 0;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h1-en);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.about-page h1 a {
+    color: var(--color-main);
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* ========================================
+ABOUT / H1 LINK HOVER / PC・TB・SP
+マウス操作時のみ左右反転
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    .about-page h1 a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+/* ========================================
+ABOUT / TEXT COMMON
+======================================== */
+
+.about-summary {
+    min-width: 0;
+}
+
+.about-summary h2 {
+    margin: 0 0 var(--mg-bottom-item);
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h2-en);
+    font-weight: 700;
+    line-height: var(--line-height-tight);
+    color: var(--color-main);
+}
+
+.about-summary h3 {
+    margin:
+        var(--mg-bottom-item)
+        0
+        6px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--color-main);
+}
+
+/* ABOUT / PC・TB・SP
+   各情報セクションの先頭見出しは上余白を設けない */
+.about-section-body > h3:first-child {
+    margin-top: 0;
+}
+
+
+
+.about-summary .about-summary-industry h3 {
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h3-en);
+    font-weight: 400;
+}
+
+.about-summary p {
+    margin:
+        0
+        0
+        var(--mg-bottom-item);
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 400;
+    line-height: var(--line-height-main);
+    color: var(--color-main);
+
+    text-align: justify;
+    text-justify: inter-character;
+}
+
+.about-summary-career p {
+    margin-bottom: 1em;
+}
+
+.about-summary p:last-child {
+    margin-bottom: 0;
+}
+
+.about-personal-likes {
+    line-height: var(--line-height-wide);
+}
+
+
+/* ========================================
+ABOUT / SKILLS
+======================================== */
+
+.about-summary-skills h3 {
+    margin:
+        0
+        0
+        4px;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.about-summary-skills p {
+    text-align: left;
+}
+
+.about-skills-main,
+.about-skills-web {
+    margin-bottom: var(--mg-bottom-item);
+}
+
+
+/* ========================================
+ABOUT / INDEX COMMON
+======================================== */
+
+.about-index ul {
+    margin: 0;
+    padding: 0;
+}
+
+.about-index li {
+    margin-bottom: 18px;
+
+    list-style: none;
+
+    font-family: var(--font-family-en);
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.about-index li:last-child {
+    margin-bottom: 0;
+}
+
+.about-index a {
+    display: inline-block;
+
+    color: var(--color-main);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+
+
+/* ========================================
+ABOUT HERO / PC・TB・SP 共通
+540 × 360pxを基準に全素材を等倍率で縮小
+======================================== */
+
+.about-hero {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 0 var(--mg-bottom-content);
+}
+
+/* 全素材の共通座標系 */
+.about-hero-art {
+    position: relative;
+    isolation: isolate;
+
+    width: min(540px, 100%);
+    aspect-ratio: 3 / 2;
+
+    flex: 0 0 auto;
+    container-type: inline-size;
+}
+
+/* 背景装飾 */
+.about-hero-art::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    width: 66.666667cqw;
+    height: 66.666667cqw;
+    top: 0;
+    left: 33.333333cqw;
+
+    background-image: url("/img/about/about-hero.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    pointer-events: none;
+}
+
+/* プロフィール写真 */
+.about-hero-art .img-me {
+    position: absolute;
+    top: 19.444444cqw;
+    left: 0;
+
+    display: block;
+    width: 44.444444cqw;
+    height: auto;
+    margin: 0;
+    max-width: none;
+}
+
+/* 肩書き＋AMIロゴ */
+.about-hero-art .about-identity {
+    position: absolute;
+    z-index: 1;
+
+    top: 44.444444cqw;
+    left: 38.518519cqw;
+
+    width: 44.444444cqw;
+    margin: 0;
+    min-width: 0;
+}
+
+/* 肩書き */
+.about-hero-art .about-identity-role {
+    margin: 0;
+
+    font-family: var(--font-family-en);
+    font-size: clamp(10px, 3.5cw, 12px);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+}
+
+/* AMIロゴ */
+.about-hero-art .about-identity img {
+    display: block;
+    width: 22.222222cqw;
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+/* ========================================
+ABOUT / PC
+1100px以上
+
+15vw / 70vw / 15vwを維持しながら
+大型ディスプレイまで連続的に伸縮
+======================================== */
+
+@media screen and (min-width: 1100px) {
+
+    .about-page {
+        width: var(--pc-main-width);
+        margin: 0 auto;
+        padding-top: 55px;
+    }
+
+
+    /* -------------------------
+    ABOUT TITLE PC
+    ------------------------- */
+
+    .about-page h1 {
+        margin-bottom: var(--mg-bottom-content);
+    }
+
+    /* ABOUT INFORMATION / PC — SERVICEと同一の4カラム */
+    .about-summary {
+        width: 100%;
+        margin: 0 0 var(--mg-bottom-section);
+    }
+
+    .about-section {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: var(--mg-bottom-content);
+        align-items: baseline;
+        width: 100%;
+        margin: 0 0 var(--mg-bottom-section);
+    }
+
+    .about-summary-industry {
+        margin-top: var(--mg-bottom-content) 0 var(--mg-bottom-section);
+    }
+
+    .about-section:last-child {
+        margin-bottom: 0;
+    }
+
+    .about-section > h2 {
+        grid-column: 1;
+        text-align: right;
+    }
+
+    .about-section-body {
+        grid-column: 2 / 4;
+        min-width: 0;
+    }
+
+    /********************* Service FAQ PC ********************/
+
+    .service-faq {
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        column-gap: var(--mg-bottom-content);
+
+        align-items: start;
+
+        margin-bottom: var(--mg-bottom-section);
+    }
+
+
+    .service-faq > h2 {
+        grid-column: 1;
+
+        margin: 0;
+
+        text-align: right;
+    }
+
+
+    /* SERVICE / FAQ LIST / PC */
+    .service-faq-list {
+        grid-column: 2 / 4;
+
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+    }
+
+    /* -------------------- FAQ ITEM PC -------------------- */
+
+    .service-faq-item {
+        margin: 0;
+
+        border-bottom: 1px solid var(--color-main);
+    }
+
+
+    .service-faq-item:first-child {
+        border-top: 1px solid var(--color-main);
+    }
+
+
+    /* -------------------- QUESTION PC -------------------- */
+
+    .service-faq-question {
+        display: grid;
+
+        grid-template-columns:
+            32px
+            minmax(0, 1fr)
+            18px;
+
+        column-gap: 16px;
+
+        align-items: center;
+
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 24px 0;
+
+        color: var(--color-main);
+
+        cursor: pointer;
+
+        list-style: none;
+    }
+
+
+    /* ブラウザ標準のdetailsマーカーを非表示 */
+
+    .service-faq-question::-webkit-details-marker {
+        display: none;
+    }
+
+
+    .service-faq-question::marker {
+        content: "";
+    }
+
+
+    /* -------------------- Q PC -------------------- */
+
+    .service-faq-q {
+        display: block;
+
+        font-family: var(--font-family-en);
+        font-size: var(--font-size-h3-en);
+        font-weight: 600;
+        line-height: 1;
+
+        color: var(--color-main);
+    }
+
+
+    /* -------------------- QUESTION TEXT PC -------------------- */
+
+    .service-faq-question-text {
+        min-width: 0;
+
+        font-family: var(--font-family-ja);
+        font-size: var(--font-size-main);
+        font-weight: 600;
+        line-height: var(--line-height-main);
+
+        color: var(--color-main);
+    }
+
+
+    /* -------------------- PLUS / MINUS PC -------------------- */
+
+    /*
+    SERVICE / PAGE CTAの矢印と同じ
+    1px線を使用。
+
+    CLOSED : ＋
+    OPEN   : −
+    */
+
+    .service-faq-icon {
+        position: relative;
+
+        display: block;
+
+        width: 18px;
+        height: 18px;
+
+        flex-shrink: 0;
+    }
+
+
+    .service-faq-icon::before,
+    .service-faq-icon::after {
+        content: "";
+
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        width: 18px;
+        height: 1px;
+
+        background: currentColor;
+
+        transform-origin: center;
+
+        transition: transform 0.3s ease;
+    }
+
+
+    .service-faq-icon::before {
+        transform:
+            translate(-50%, -50%);
+    }
+
+
+    .service-faq-icon::after {
+        transform:
+            translate(-50%, -50%)
+            rotate(90deg);
+    }
+
+
+    /* OPEN：縦線を横線へ重ねる */
+
+    .service-faq-item[open]
+    .service-faq-icon::after {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg);
+    }
+
+
+    /* -------------------- ANSWER PC -------------------- */
+
+    .service-faq-answer {
+        padding:
+            0
+            34px
+            24px
+            48px;
+    }
+
+
+    .service-faq-answer p {
+        margin: 0 0 16px;
+
+        font-family: var(--font-family-ja);
+        font-size: var(--font-size-main);
+        font-weight: 300;
+        line-height: var(--line-height-main);
+
+        color: var(--color-main);
+    }
+
+
+    .service-faq-answer p:last-child {
+        margin-bottom: 0;
+    }
+
+
+    /* -------------------------
+    RIGHT INDEX
+    WORKS TYPEと同じ右レール
+    ------------------------- */
+
+    .about-index {
+        position: fixed;
+
+        top: 150px;
+
+        width: 130px;
+
+        right:
+            calc(
+                (var(--pc-side-rail) - 130px)
+                / 2
+            );
+
+        transform: none;
+
+        z-index: 20;
+    }
+
+}
+
+
+/********************* SERVICE PC ********************/
+
+@media screen and (min-width: 1100px) {
+
+
+    /* ========================================
+    PAGE
+    WORKSと同じPCメイン幅
+    ======================================== */
+
+    .service-page {
+        width: var(--pc-main-width);
+        margin: 0 auto;
+        padding-top: 55px;
+        box-sizing: border-box;
+    }
+
+
+    .service-page > .service > h1 {
+        margin: 0 0 var(--mg-bottom-section);
+
+        font-family: var(--font-family-en);
+        font-size: var(--font-size-h1-en);
+        font-weight: 700;
+        line-height: 1;
+    }
+
+
+    .service-page > .service > h1 a {
+        display: inline-block;
+
+        color: var(--color-main);
+        text-decoration: none;
+
+        transition: transform 0.3s ease;
+    }
+
+
+/* ========================================
+SERVICE / H1 LINK HOVER / PC・TB・SP
+マウス操作時のみ左右反転
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    .service-page h1 a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+
+    /* ========================================
+    Service / wrapper / PC
+    ======================================== */
+
+    .service-wrapper {
+        width: 100%;
+        margin: 0;
+    }
+
+
+    /* ========================================
+    SECTION COMMON
+    ======================================== */
+
+    .service-section {
+        width: 100%;
+        scroll-margin-top: 80px;
+    }
+
+
+    .service-section > h2 {
+        margin: 0;
+        text-align: right;
+
+        font-family: var(--font-family-en);
+        font-size: var(--font-size-h2-en);
+        font-weight: 600;
+        line-height: var(--line-height-tight);
+        color: var(--color-main);
+    }
+
+
+    /* ========================================
+    APPROACH
+    Menuと同じ4カラムグリッド
+    ======================================== */
+
+    .service-approach {
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        column-gap: var(--mg-bottom-content);
+
+        align-items: start;
+
+        margin-bottom: var(--mg-bottom-section);
+    }
+
+
+    .service-approach > h2 {
+        grid-column: 1;
+
+        margin: 0;
+    }
+
+
+    /* SERVICE / APPROACH TEXT / PC */
+    .service-approach-text {
+        grid-column: 2 / 4;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+    }
+
+
+    /* Approach copy */
+
+    .service-approach-lead {
+        max-width: none;
+
+        margin: 0 0 var(--mg-bottom-content);
+
+        font-family: var(--font-family-ja);
+        font-size: clamp(20px, 2.6vw, 32px);
+        font-weight: 600;
+        line-height: 1.65;
+        letter-spacing: 0.08em;
+
+        color: var(--color-main);
+    }
+
+
+    /* Approach body */
+
+    .service-approach-body {
+        max-width: 640px;
+    }
+
+
+    .service-approach-body p {
+        margin: 0 0 1em;
+
+        font-family: var(--font-family-ja);
+        font-size: var(--font-size-main);
+        font-weight: 300;
+        line-height: var(--line-height-main);
+
+        text-align: justify;
+        text-justify: inter-ideograph;
+    }
+
+
+    .service-approach-body p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* ========================================
+    MENU PC
+
+    PCメイン幅を4カラムに分割
+    1カラム目 = Menu見出し
+    2〜4カラム目 = Menu内容
+
+    各Menu列は独立して縦積み
+    ======================================== */
+
+    .service-menu {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        column-gap: var(--mg-bottom-content);
+        align-items: baseline;
+
+        margin-bottom: clamp(120px, 16vw, 160px);
+    }
+
+
+    .service-menu > h2 {
+        grid-column: 1;
+
+        margin: 0;
+    }
+
+
+    /* SERVICE / MENU LIST / PC */
+    .service-menu-list {
+        grid-column: 2 / 4;
+
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: clamp(16px, 2vw, 32px);
+        align-items: start;
+
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .service-menu-column {
+        display: flex;
+        flex-direction: column;
+        gap: var(--mg-bottom-content);
+
+        min-width: 0;
+    }
+
+
+    .service-menu-item {
+        min-width: 0;
+
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .service-menu-item h3 {
+        margin: 0;
+
+        font-family: var(--font-family-en);
+        font-size: var(--font-size-h3-en);
+        font-weight: 600;
+        line-height: var(--line-height-tight);
+        color: var(--color-main);
+    }
+
+    .service-menu-item h3 a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+
+    .service-menu-item ul {
+        margin: var(--mg-bottom-item) 0 0;
+        padding: 0;
+    }
+
+
+    .service-menu-item li {
+        margin: 0;
+        padding: 0;
+
+        list-style: none;
+
+        font-family: var(--font-family-ja);
+        font-size: var(--font-size-main);
+        font-weight: 400;
+        line-height: 1.5em;
+        color: var(--color-main);
+        letter-spacing: -0.05em;
+    }
+
+
+    /* ========================================
+    VIEW WORKS
+    ======================================== */
+
+    .service-menu-works-link {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+
+        width: fit-content;
+        margin-top: 0.8em;
+
+        color: var(--color-main);
+        text-decoration: none;
+    }
+
+
+    .service-menu-works-text {
+        font-family: var(--font-family-en);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+
+    /* CSSで生成する細い矢印 */
+
+    .service-menu-arrow {
+        position: relative;
+
+        display: block;
+
+        width: 18px;
+        height: 5px;
+
+        flex-shrink: 0;
+
+        transition: transform 0.25s ease;
+    }
+
+
+    .service-menu-arrow::before {
+        content: "";
+
+        position: absolute;
+        left: 0;
+        top: 50%;
+
+        width: 100%;
+        height: 1px;
+
+        background: currentColor;
+    }
+
+
+    .service-menu-arrow::after {
+        content: "";
+
+        position: absolute;
+        right: 0;
+        top: 50%;
+
+        width: 6px;
+        height: 1px;
+
+        background: currentColor;
+
+        transform-origin: right center;
+        transform: rotate(45deg);
+    }
+
+
+
+/* ========================================
+SERVICE MENU LINK / PC
+マウス操作時のみ文字反転・矢印移動
+======================================== */
+
+.service-menu-item h3 a {
+    display: inline-block;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition: transform 0.3s ease;
+}
+
+.service-menu-works-text {
+    display: inline-block;
+
+    transition: transform 0.3s ease;
+}
+
+/* HOVER / マウス操作時のみ */
+@media (hover: hover) and (pointer: fine) {
+
+    .service-menu-item h3 a:hover,
+    .service-menu-works-link:hover .service-menu-works-text {
+        transform: scaleX(-1);
+    }
+
+    .service-menu-works-link:hover .service-menu-arrow {
+        transform: translateX(4px);
+    }
+
+}
+
+
+    /* ========================================
+    FLOW
+    WORK DETAIL / Processのリズムを継承
+    線なし・●の代わりに数字
+    ======================================== */
+
+    .service-flow {
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        column-gap: var(--mg-bottom-content);
+
+        align-items: baseline;
+
+        margin-bottom: var(--mg-bottom-section);
+    }
+
+
+    .service-flow > h2 {
+        grid-column: 1;
+
+        margin: 0;
+    }
+
+
+    /* SERVICE / FLOW LIST / PC */
+    .service-flow-list {
+        grid-column: 2 / 4;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+    }
+
+
+    .service-flow-item {
+        display: grid;
+
+        grid-template-columns:
+            64px
+            minmax(0, 1fr);
+
+        column-gap: 30px;
+
+        align-items: baseline;
+
+        margin-bottom: 35px;
+    }
+
+
+    .service-flow-item:last-child {
+        margin-bottom: 0;
+    }
+
+
+    .service-flow-number {
+        display: block;
+
+        font-family: var(--font-family-en);
+        font-size: var(--font-size-h3-en);
+        font-weight: 600;
+        line-height: var(--line-height-tight);
+        color: var(--color-main);
+    }
+
+
+    .service-flow-content {
+        min-width: 0;
+    }
+
+
+    .service-flow-content h3 {
+        margin: 0 0 10px;
+
+        font-family: var(--font-family-ja);
+        font-size: var(--font-size-h3-ja);
+        font-weight: 800;
+        line-height: var(--line-height-tight);
+        color: var(--color-main);
+    }
+
+
+    .service-flow-content p {
+        margin: 0;
+
+        font-family: var(--font-family-ja);
+        font-size: var(--font-size-main);
+        font-weight: 300;
+        line-height: var(--line-height-main);
+        color: var(--color-main);
+    }
+
+
+    /* ========================================
+    RIGHT INDEX
+    ABOUTと完全同仕様
+    ======================================== */
+
+    .service-index {
+        position: fixed;
+
+        top: 150px;
+
+        width: 130px;
+
+        right:
+            calc(
+                (var(--pc-side-rail) - 130px)
+                / 2
+            );
+
+        transform: none;
+
+        z-index: 20;
+    }
+
+
+    .service-index ul {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .service-index li {
+        margin-bottom: 18px;
+
+        list-style: none;
+
+        font-family: var(--font-family-en);
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+
+    .service-index li:last-child {
+        margin-bottom: 0;
+    }
+
+
+    .service-index a {
+        display: inline-block;
+
+        padding: 0 8px 4px 0;
+
+        border: none;
+        border-bottom: 2px solid transparent;
+
+        color: var(--color-main);
+        background: transparent;
+
+        font-family: var(--font-family-en);
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.35;
+
+        text-decoration: none;
+        white-space: nowrap;
+
+        cursor: pointer;
+
+        transition:
+            transform 0.3s ease,
+            border-color 0.3s ease;
+    }
+
+
+
+    /* ========================================
+    SERVICE / INDEX HOVER / マウス操作時のみ
+    ======================================== */
+
+    @media (hover: hover) and (pointer: fine) {
+        .service-index a:hover {
+            transform: scaleX(-1);
+        }
+    }
+
+
+
+    .service-index a.is-active {
+        border-bottom-color: var(--color-main);
+    }
+
+
+    /* ========================================
+    WORKS
+    ======================================== */
+
+
+/* ========================================
+CONTACT
+ABOUT DestinationのContactを継承
+======================================== */
+
+/* ========================================
+PAGE CTA
+ABOUT / SERVICE 共通
+======================================== */
+
+.page-cta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+
+    margin:
+        var(--mg-bottom-section)
+        0;
+}
+
+
+.page-cta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 0;
+
+    text-align: center;
+}
+
+
+.page-cta-lead {
+    margin:
+        0
+        0
+        12px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.page-cta-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 0;
+
+    color: var(--color-main);
+    text-decoration: none;
+
+    transform-origin: center;
+}
+
+
+.page-cta-label {
+    display: inline-block;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    transition: transform 0.3s ease;
+}
+
+.page-cta-arrow {
+    position: relative;
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    margin-top: 3px;
+
+    transition: transform 0.3s ease;
+}
+
+
+.page-cta-arrow::before {
+    content: "";
+
+    position: absolute;
+    left: 2px;
+    bottom: 3px;
+
+    width: 20px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform: rotate(-35deg);
+    transform-origin: left center;
+}
+
+
+.page-cta-arrow::after {
+    content: "";
+
+    position: absolute;
+    top: 2px;
+    right: -1px;
+
+    width: 7px;
+    height: 1px;
+
+    background: currentColor;
+}
+
+
+/* ========================================
+SERVICE / CONTACT CTA HOVER / PC
+マウス操作時のみ文字反転・矢印移動
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .page-cta-link:hover .page-cta-arrow {
+        transform: translate(3px, -3px);
+    }
+
+    .page-cta-link:hover .page-cta-label {
+        transform: scaleX(-1);
+    }
+
+    .service-contact-link:hover .service-contact-label {
+        transform: scaleX(-1);
+    }
+
+}
+
+
+}
+
+/**************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************
+TABLET
+768px - 1099px
+*************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+**************************************************************/
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+
+/* ========================================
+COMMON / TABLET NAV / TB
+768px - 1099px
+======================================== */
+
+/* メニュー全体：上下左右の余白を確保 */
+.sp-nav {
+    padding-top: 0;
+    padding-bottom: 40px;
+}
+
+/* メインメニューとSNSの左端を統一 */
+
+.sp-nav-main,
+.sp-nav-contact {
+    width: calc(100% - 80px);
+    margin-inline: auto;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+
+/* メインメニュー */
+.sp-nav-main {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 40px);
+}
+
+/* Worksの下位メニューをインデント */
+.sp-nav-works {
+    margin-left: clamp(48px, 5vw, 48px);
+}
+
+.sp-nav-type li a::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 0.5em;
+    height: 2px;
+
+    margin-right: 0.2em;
+
+    margin-bottom: 0.2em;
+
+    background: currentColor;
+
+    vertical-align: middle;
+    
+}
+
+
+/* SNS：メインメニューと同じ開始位置 */
+.sp-nav-contact {
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+}
+
+
+
+/* ========================================
+FIXED UI / TABLET
+Contact・Instagramは非表示
+Back to TOPのみ使用
+======================================== */
+
+.contact-btn {
+    display: block;
+
+    position: fixed;
+
+    top: auto;
+
+    right: 40px;
+    bottom: 56px;
+
+    transform: none;
+
+    z-index: 110;
+}
+
+.contact-btn > a {
+    display: none;
+}
+
+.home-page .contact-btn > a {
+    display: block;
+}
+
+.back-to-top {
+    display: flex;
+}
+
+
+/*********************
+WORKS TB
+*********************/
+
+.works-page {
+    width: calc(100% - 80px);
+    max-width: 960px;
+
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+/* ========================================
+WORKS HEADING TB
+Tablet：通常 / Floatingを同じレイアウトに統一
+======================================== */
+
+.works-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+
+    width: calc(100% - 72px);
+    margin-bottom: 48px;
+
+    column-gap: 20px;
+    row-gap: 16px;
+}
+
+.works-heading h1 {
+    flex: 0 0 auto;
+
+    margin: 0 20px 0 0;
+
+    font-size: 40px;
+}
+
+.works-heading .works-filter,
+.works-heading .works-filter-category {
+    display: contents;
+}
+
+.works-heading .works-filter-category li {
+    flex: 0 0 auto;
+}
+
+.works-heading .works-filter-category button {
+    font-size: 24px;
+}
+
+
+/* ========================================
+TYPE TB
+Tabletでは使用しない
+======================================== */
+
+.works-page .works-filter-type {
+    display: none;
+}
+
+
+/* ========================================
+FLOATING TB
+通常Headingと同じ幅・左端・余白
+======================================== */
+
+.works-heading-floating {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+
+    /* 通常の .works-page と完全に同じ幅 */
+    width: calc(100% - 152px);
+    max-width: 960px;
+
+    /* 通常と同じ中央配置 */
+    left: 50%;
+
+    margin: 0;
+
+    /* 通常の padding-top: 40px と同じ上余白 */
+    padding: 40px 0 16px;
+
+    column-gap: 20px;
+    row-gap: 16px;
+
+    box-sizing: border-box;
+
+    z-index: 100;
+}
+
+.works-heading-floating h1 {
+    display: block;
+    flex: 0 0 auto;
+
+    margin: 0 20px 0 0;
+
+    font-size: 40px;
+}
+
+.works-heading-floating .works-filter,
+.works-heading-floating .works-filter-category {
+    display: contents;
+}
+
+.works-heading-floating .works-filter-category li {
+    flex: 0 0 auto;
+}
+
+.works-heading-floating .works-filter-category button {
+    font-size: 24px;
+}
+
+
+
+/* ========================================
+WORKS GRID TB
+Tablet：3カラム
+======================================== */
+
+.works-list {
+    width: 100%;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.work-item-large {
+    grid-column: span 2;
+}
+
+/*********************
+WORK DETAIL TB
+*********************/
+
+.works-title {
+    width: calc(100% - 72px);
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.works-cover {
+    width: 100vw;
+}
+
+.works-detail {
+    width: calc(100% - 80px);
+    margin-left: auto;
+    margin-right: auto;
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.4fr)
+        minmax(260px, 0.8fr);
+
+    column-gap: 48px;
+    align-items: start;
+}
+
+.works-detail .works-images {
+    width: 100%;
+    min-width: 0;
+}
+
+.works-detail .works-images img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* WORK DETAIL / STATEMENT / TB */
+.works-statement {
+    width: 100%;
+    min-width: 0;
+
+    margin-top: 112px;
+    margin-right: 0;
+    margin-bottom: 160px;
+    margin-left: 0;
+}
+
+.work-navigation {
+    width: calc(100% - 80px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* WORK DETAIL / MAIN VISUAL NAVIGATION / TB */
+.work-navigation--main ul {
+    width: 100%;
+}
+
+
+/*********************
+ABOUT / TABLET TB
+768px - 1099px
+*********************/
+
+.about-page {
+    width: calc(100% - 80px);
+    max-width: 960px;
+
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+
+/* ========================================
+ABOUT TOP TB
+======================================== */
+
+.about-profile {
+    width: 100%;
+}
+
+.about-page h1 {
+    margin-bottom: clamp(56px, 8vw, 88px);
+
+    font-size: 40px;
+}
+
+
+
+/* ========================================
+ABOUT INFORMATION / TB
+SERVICE MENUと同じ2カラム構造
+======================================== */
+
+.about-summary {
+    width: calc(100% - 72px);
+    margin: 0 0 clamp(120px, 16vw, 160px);
+}
+
+/* H2左側・本文右側 */
+.about-section {
+    display: grid;
+
+    grid-template-columns:
+        minmax(100px, 0.65fr)
+        minmax(0, 3fr);
+
+    column-gap: clamp(32px, 5vw, 64px);
+    align-items: baseline;
+
+    width: 100%;
+    margin-bottom: var(--mg-bottom-section);
+}
+
+.about-section:last-child {
+    margin-bottom: 0;
+}
+
+/* H2 / TB */
+.about-section > h2 {
+    grid-column: 1;
+
+    margin: 0;
+
+    font-size: clamp(28px, 3.6vw, 32px);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+    text-align: left;
+}
+
+/* 本文 / TB */
+.about-section-body {
+    grid-column: 2;
+
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+
+/* ========================================
+ABOUT INDEX TB
+Tabletでは右レール版を使用しない
+======================================== */
+
+.about-index {
+    display: none;
+}
+
+
+/*********************
+SERVICE TB
+*********************/
+
+.service-wrapper {
+width: 100%;
+max-width: 100%;
+}
+
+.service-icando {
+width: calc(100% - 120px);
+margin-left: auto;
+margin-right: auto;
+
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+
+column-gap: 64px;
+row-gap: 72px;
+
+}
+
+.service h1 {
+margin-left: 56px;
+}
+
+.service-design,
+.service-direction,
+.service-management,
+.service-web {
+min-width: 0;
+}
+
+.service-icando ul {
+padding-left: 18px;
+}
+
+
+
+/*********************
+CONTACT / TABLET TB
+768px - 1099px
+*********************/
+
+.contact-page {
+    width: calc(100% - 80px);
+    max-width: 960px;
+
+    margin: 0 auto;
+    padding-top: 40px;
+
+    box-sizing: border-box;
+}
+
+.contact-wrapper {
+    width: min(640px, 80%);
+    max-width: 100%;
+
+    margin: 0 auto;
+}
+
+body:not(.home-page) footer {
+    width: calc(100% - 80px);
+
+    margin:
+        64px
+        auto
+        24px;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    text-align: right;
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+
+    .privacy-page {
+        width: 100%;
+        margin: 0 auto;
+        padding: 55px 8vw 0;
+        box-sizing: border-box;
+    }
+
+    .privacy-wrapper {
+        width: 80%;
+        margin: 0 auto;
+    }    
+
+}
+
+
+/*********************
+SERVICE / TABLET
+768px - 1099px
+*********************/
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+/* ========================================
+PAGE
+ABOUTと同じTablet本文幅
+======================================== */
+
+.service-page {
+    width: calc(100% - 80px);
+    max-width: 960px;
+
+    margin: 0 auto;
+    padding-top: 40px;
+
+    box-sizing: border-box;
+}
+
+
+.service-page > .service > h1 {
+    margin: 0 0 clamp(96px, 13vw, 160px);
+
+    font-family: var(--font-family-en);
+    font-size: clamp(40px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1;
+}
+
+
+.service-page > .service > h1 a {
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+
+.service-wrapper {
+    width: 100%;
+    margin: 0;
+}
+
+
+/* PC右INDEXはTabletでは使用しない */
+
+.service-index {
+    display: none;
+}
+
+
+/* ========================================
+SECTION COMMON TB
+======================================== */
+
+.service-section {
+    width: 100%;
+    scroll-margin-top: 80px;
+}
+
+
+.service-section > h2 {
+    margin: 0;
+
+    font-family: var(--font-family-en);
+    font-size: clamp(28px, 3.6vw, 32px);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+/* ========================================
+APPROACH TB
+======================================== */
+
+.service-approach {
+    width: 100%;
+
+    margin-bottom: clamp(120px, 16vw, 160px);
+}
+
+
+.service-approach-text {
+    width: 100%;
+    margin: 0;
+}
+
+
+
+/* SERVICE / APPROACH LEAD / TB */
+.service-approach-lead {
+    width: min(calc(100% - 72px), 640px);
+    max-width: none;
+
+    margin:
+        0
+        72px
+        clamp(32px, 7vw, 64px)
+        auto;
+
+    font-family: var(--font-family-ja);
+    font-size: clamp(20px, 4.2vw, 32px);
+    font-weight: 600;
+    line-height: 1.65;
+    letter-spacing: 0.08em;
+
+    color: var(--color-main);
+}
+
+.contact-lead h2 {
+    font-size: clamp(20px, 4.2vw, 32px);
+}
+
+
+.service-approach-body {
+    width: min(calc(100% - 72px), 640px);
+    max-width: none;
+
+    margin-left: auto;
+    margin-right: 72px;
+}
+
+
+.service-approach-body p {
+    margin: 0 0 1em;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 300;
+    line-height: var(--line-height-main);
+
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+
+
+.service-approach-body p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ========================================
+MENU TB
+見出し + 3列
+======================================== */
+
+.service-menu {
+    width: calc(100% - 72px);
+    
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(100px, 0.65fr)
+        minmax(0, 3fr);
+
+    column-gap: clamp(32px, 5vw, 64px);
+    align-items: baseline;
+
+    margin-bottom: clamp(120px, 16vw, 160px);
+}
+
+.service-menu > h2 {
+    grid-column: 1;
+
+    margin: 0;
+}
+
+
+.service-menu-list {
+    grid-column: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    column-gap: clamp(24px, 4vw, 48px);
+
+    align-items: start;
+
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.service-menu-column {
+    display: flex;
+    flex-direction: column;
+
+    gap: clamp(48px, 7vw, 64px);
+
+    min-width: 0;
+}
+
+
+.service-menu-item {
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.service-menu-item h3 {
+    margin: 0;
+
+    font-family: var(--font-family-en);
+    font-size: clamp(20px, 2.6vw, 24px);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.service-menu-item h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.service-menu-item ul {
+    margin: var(--mg-bottom-item) 0 0;
+    padding: 0;
+}
+
+
+.service-menu-item li {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 400;
+    line-height: 1.5em;
+
+    color: var(--color-main);
+
+    letter-spacing: -0.05em;
+}
+
+
+/* ========================================
+MENU / VIEW WORKS TB
+======================================== */
+
+.service-menu-works-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 6px;
+
+    width: fit-content;
+    margin-top: 0.8em;
+
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+
+.service-menu-works-text {
+    font-family: var(--font-family-en);
+    font-size: clamp(13px, 1.7vw, 15px);
+    font-weight: 400;
+    line-height: 1;
+}
+
+
+/* SERVICE MENU / VIEW WORKS ARROW / TB */
+
+.service-menu-arrow {
+    position: relative;
+
+    display: block;
+
+    width: 18px;
+    height: 5px;
+
+    flex-shrink: 0;
+
+    transition: transform 0.25s ease;
+}
+
+
+.service-menu-arrow::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+}
+
+
+.service-menu-arrow::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    top: 50%;
+
+    width: 6px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform-origin: right center;
+    transform: rotate(45deg);
+}
+
+
+.service-flow {
+    width: calc(100% - 75px);
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(100px, 0.65fr)
+        minmax(0, 3fr);
+
+    column-gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+
+    margin-bottom: clamp(120px, 16vw, 160px);
+}
+
+
+.service-flow > h2 {
+    grid-column: 1;
+
+    margin: 0;
+}
+
+
+.service-flow-list {
+    grid-column: 2;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+}
+
+
+.service-flow-item {
+    display: grid;
+
+    grid-template-columns:
+        clamp(48px, 7vw, 64px)
+        minmax(0, 1fr);
+
+    column-gap: clamp(20px, 3vw, 30px);
+
+    align-items: baseline;
+
+    margin-bottom: clamp(28px, 4vw, 35px);
+}
+
+
+.service-flow-item:last-child {
+    margin-bottom: 0;
+}
+
+
+.service-flow-number {
+    display: block;
+
+    font-family: var(--font-family-en);
+    font-size: clamp(20px, 2.6vw, 24px);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.service-flow-content {
+    min-width: 0;
+}
+
+
+.service-flow-content h3 {
+    margin: 0 0 10px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-h3-ja);
+    font-weight: 800;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.service-flow-content p {
+    margin: 0;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 300;
+    line-height: var(--line-height-main);
+
+    color: var(--color-main);
+}
+
+
+/********************* FAQ TB ********************/
+
+.service-faq {
+    width: calc(100% - 75px);
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(100px, 0.65fr)
+        minmax(0, 3fr);
+
+    column-gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+
+    margin-bottom: clamp(120px, 16vw, 160px);
+}
+
+
+.service-faq > h2 {
+    grid-column: 1;
+
+    margin: 0;
+}
+
+
+.service-faq-list {
+    grid-column: 2;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+}
+
+
+/* -------------------- FAQ ITEM TB -------------------- */
+
+.service-faq-item {
+    margin: 0;
+
+    border-bottom: 1px solid var(--color-main);
+}
+
+
+.service-faq-item:first-child {
+    border-top: 1px solid var(--color-main);
+}
+
+
+/* -------------------- QUESTION TB -------------------- */
+
+.service-faq-question {
+    display: grid;
+
+    grid-template-columns:
+        32px
+        minmax(0, 1fr)
+        18px;
+
+    column-gap: 16px;
+
+    align-items: center;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 24px 0;
+
+    color: var(--color-main);
+
+    cursor: pointer;
+
+    list-style: none;
+}
+
+
+.service-faq-question::-webkit-details-marker {
+    display: none;
+}
+
+
+.service-faq-question::marker {
+    content: "";
+}
+
+
+/* -------------------- Q TB -------------------- */
+
+.service-faq-q {
+    display: block;
+
+    font-family: var(--font-family-en);
+    font-size: clamp(20px, 2.6vw, 24px);
+    font-weight: 600;
+    line-height: 1;
+
+    color: var(--color-main);
+}
+
+
+/* -------------------- QUESTION TEXT TB -------------------- */
+
+.service-faq-question-text {
+    min-width: 0;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    line-height: var(--line-height-main);
+
+    color: var(--color-main);
+}
+
+
+/* -------------------- PLUS / MINUS TB -------------------- */
+
+.service-faq-icon {
+    position: relative;
+
+    display: block;
+
+    width: clamp(16px, 2vw, 18px);
+    height: clamp(16px, 2vw, 18px);
+
+    flex-shrink: 0;
+}
+
+
+.service-faq-icon::before,
+.service-faq-icon::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+
+    transform-origin: center;
+
+    transition: transform 0.3s ease;
+}
+
+
+.service-faq-icon::before {
+    transform:
+        translate(-50%, -50%);
+}
+
+
+.service-faq-icon::after {
+    transform:
+        translate(-50%, -50%)
+        rotate(90deg);
+}
+
+
+.service-faq-item[open]
+.service-faq-icon::after {
+    transform:
+        translate(-50%, -50%)
+        rotate(0deg);
+}
+
+
+/* -------------------- ANSWER TB -------------------- */
+
+.service-faq-answer {
+    padding:
+        0
+        34px
+        24px
+        48px;
+}
+
+
+.service-faq-answer p {
+    margin: 0 0 16px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 300;
+    line-height: var(--line-height-main);
+
+    color: var(--color-main);
+}
+
+
+.service-faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ========================================
+CONTACT
+======================================== */
+
+.service-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin:
+        clamp(120px, 16vw, 160px)
+        0;
+}
+
+
+.service-cta-lead {
+    margin:
+        0
+        0
+        var(--mg-bottom-item);
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-h3-ja);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+
+    text-align: center;
+}
+
+
+.service-contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 0;
+
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+
+.service-contact-label {
+    display: inline-block;
+
+    font-family: var(--font-family-en);
+    font-size: clamp(20px, 2.8vw, 24px);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+}
+
+
+.service-contact-arrow {
+    display: block;
+
+    margin-top: 6px;
+
+    font-family: var(--font-family-en);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+
+
+/* ========================================
+WORKS
+共通カルーセルをそのまま使用
+======================================== */
+
+.service-works {
+    width: 100%;
+}
+}
+
+/* ========================================
+PAGE CTA
+ABOUT / SERVICE 共通 / TABLET
+======================================== */
+
+.page-cta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 65%;
+    margin:
+        var(--mg-bottom-section)
+        auto;
+}
+
+
+.page-cta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 0;
+
+    text-align: center;
+}
+
+
+.page-cta-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 0;
+
+    color: var(--color-main);
+    text-decoration: none;
+
+    transform-origin: center;
+}
+
+
+.page-cta-lead {
+    margin: 0 0 12px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.page-cta-label {
+    display: inline-block;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    transition: transform 0.3s ease;
+}
+
+
+.page-cta-arrow {
+    position: relative;
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    margin-top: 3px;
+
+    transition: transform 0.3s ease;
+}
+
+
+.page-cta-arrow::before {
+    content: "";
+
+    position: absolute;
+    left: 2px;
+    bottom: 3px;
+
+    width: 20px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform: rotate(-35deg);
+    transform-origin: left center;
+}
+
+
+.page-cta-arrow::after {
+    content: "";
+
+    position: absolute;
+    top: 2px;
+    right: -1px;
+
+    width: 7px;
+    height: 1px;
+
+    background: currentColor;
+}
+
+
+/* ========================================
+PAGE CTA HOVER / TB
+マウス操作時のみ文字反転・矢印移動
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .page-cta-link:hover .page-cta-arrow {
+        transform: translate(3px, -3px);
+    }
+
+    .page-cta-link:hover .page-cta-label {
+        transform: scaleX(-1);
+    }
+
+}
+
+}
+/* END TABLET */
+
+/**************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************
+sp
+**************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************
+**************************************************************
+*************************************************************/
+
+
+
+@media screen and (max-width: 767px) {
+
+/* HOME */
+
+/* -------------------- HOME SP BACKGROUND -------------------- */
+
+.home-page::before {
+    background-image: url(/img/home/sp-home-bg.webp);
+}
+
+
+/* ========================================
+COMMON / SP NAV / SP
+767px以下
+======================================== */
+
+.contact-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    position: fixed;
+    top: auto;
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: 56px;
+
+    transform: none;
+    z-index: 100;
+}
+
+/* -------------------- CONTACT ICON SIZE / SP -------------------- */
+
+.contact-btn > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+}
+
+.contact-btn img {
+    display: block;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+}
+
+/* -------------------- HOME CONTACT ICONS / SP -------------------- */
+
+.home-page .contact-btn > a {
+    display: block;
+}
+
+
+/* -------------------- MAIN MENU / SP -------------------- */
+
+
+
+.sp-nav-main {
+    margin-top: 0;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 50px);
+}
+
+.sp-nav-main > li {
+    margin-bottom: 17px;
+}
+
+
+
+/* -------------------- WORKS / SP -------------------- */
+.sp-nav-works a { font-size: 15px; }
+
+/* -------------------- SNS / SP -------------------- */
+.sp-nav-contact {
+    margin-top: 8px;
+    margin-bottom: 0;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 32px);
+}
+
+
+/********************* work SP ********************/
+
+.works-page {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+
+
+/* SP / ページ共通余白
+   上・左右 24px / 下 0 */
+
+padding:
+    calc(env(safe-area-inset-top, 0px) + 24px)
+    max(24px, env(safe-area-inset-right, 0px))
+    0
+    max(24px, env(safe-area-inset-left, 0px));
+
+
+    box-sizing: border-box;
+}
+
+/* ========================================
+WORKS HEADING
+SP
+WORKS右側からCategory開始
+======================================== */
+
+.works-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+
+    /* MENUの領域へ侵入させない */
+    width: calc(100% - 56px);
+
+    margin-bottom: 40px;
+
+    column-gap: 16px;
+    row-gap: 8px;
+}
+
+.works-heading h1 {
+    flex: 0 0 auto;
+
+    margin: 0 16px 0 0;
+
+    font-family: var(--font-family-en);
+
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/*
+WORKS / ALL / Categoryを同じflex階層にする。
+入り切らないCategoryだけ次の行へ折り返す。
+*/
+.works-heading .works-filter,
+.works-heading .works-filter-category {
+    display: contents;
+}
+
+.works-heading .works-filter-category li {
+    flex: 0 0 auto;
+}
+
+.works-heading .works-filter-category button {
+    font-size: clamp(18px, 3vw, 20px);
+
+    line-height: 1.2;
+    padding-top: 0;
+    padding-bottom: 3px;
+}
+
+
+/* ========================================
+FLOATING
+Safe Area + 通常Headingと同じ基準
+WORKS右側からCategory開始
+======================================== */
+
+.works-heading-floating {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+
+    width: calc(
+        100%
+        - max(40px, env(safe-area-inset-left, 0px))
+        - max(40px, env(safe-area-inset-right, 0px))
+    );
+
+    padding:
+        calc(env(safe-area-inset-top, 0px) + 40px)
+        56px
+        8px
+        0;
+
+    column-gap: 13px;
+    row-gap: 8px;
+}
+
+.works-heading-floating h1 {
+    display: block;
+    flex: 0 0 auto;
+
+    margin: 0 10px 0 0;
+
+    font-size: 40px;
+}
+
+.works-heading h1 {
+    flex: 0 0 auto;
+
+    margin: 0 16px 0 0;
+
+    font-family: var(--font-family-en);
+
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+
+
+.works-heading-floating .works-filter,
+.works-heading-floating .works-filter-category {
+    display: contents;
+}
+
+.works-heading-floating .works-filter-category li {
+    flex: 0 0 auto;
+}
+
+.works-heading-floating .works-filter-category button {
+    font-size: clamp(18px, 3vw, 20px);
+
+    line-height: 1.2;
+    padding-top: 0;
+    padding-bottom: 3px;
+}
+
+
+
+/* ========================================
+TYPE
+SPではハンバーガーメニュー内に表示
+======================================== */
+
+.works-page .works-filter-type {
+    display: none;
+}
+
+/* ========================================
+WORKS GRID
+SP：2カラム
+======================================== */
+
+.works-list {
+    width: 100%;
+    min-width: 0;
+
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    column-gap: 16px;
+    row-gap: 16px;
+
+    align-items: center;
+}
+
+.work-item-large {
+    grid-column: span 2;
+}
+
+
+/* ========================================
+COMMON FOOTER / SP
+main右端とcopyright右端を統一
+======================================== */
+
+body:not(.home-page) footer {
+    width: auto;
+
+    margin:
+        64px
+        max(24px, env(safe-area-inset-right, 0px))
+        24px
+        max(24px, env(safe-area-inset-left, 0px));
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    text-align: right;
+}
+
+body:not(.home-page) footer small {
+    position: static;
+
+    font-size: var(--font-size-small);
+    color: var(--color-gray);
+}
+
+
+/*==================================================
+WORK DETAIL SP
+==================================================*/
+
+
+/*--------------------------------
+TITLE SP
+--------------------------------*/
+
+.works-title {
+    width: calc(100% - 28px);
+
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.works-title h2 {
+    font-size: clamp(18px, 2.6vw, 22px);
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.works-title h2::before {
+    border-left-width: 4px;
+    margin-right: 0.6em;
+}
+
+.works-title h3 {
+    font-size: 26px;
+    line-height: 1.4;
+    margin: 0 0 28px;
+}
+
+
+/*--------------------------------
+MAIN VISUAL SP
+--------------------------------*/
+
+.works-cover {
+position: relative;
+left: 50%;
+
+width: 100vw;
+
+margin-left: -50vw;
+margin-bottom: 48px;
+}
+
+.works-cover img {
+display: block;
+
+width: 100%;
+height: auto;
+}
+
+
+
+/*--------------------------------
+WORK DETAIL SP
+--------------------------------*/
+
+.works-detail {
+display: block;
+
+width: 100%;
+}
+
+
+
+/* ========================================
+WORK DETAIL / WORK IMAGES / SP
+767px以下
+右側固定UIのセーフティーゾーン確保
+======================================== */
+
+.works-detail .works-images {
+    width: calc(100% - 56px);
+    margin-left: 0;
+    margin-right: auto;
+    margin-bottom: var(--mg-bottom-section);
+}
+
+.works-detail .works-images img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: clamp(40px, 7vw, 56px);
+}
+
+
+
+/*--------------------------------ß
+STATEMENT SP
+--------------------------------*/
+
+/*
+390px画面の中に
+280pxの情報カラムを右寄せ。
+
+PC版の「右側にStatement」
+という構成をSPにも残す。
+*/
+
+.works-statement {
+    width: min(
+        clamp(280px, 62vw, 350px),
+        calc(100% - clamp(72px, 18vw, 96px))
+    );
+
+    margin-top: 40px;
+    margin-right: clamp(48px, 12vw, 72px);
+    margin-bottom: var(--mg-bottom-section);
+    margin-left: auto;
+}
+
+.works-statement dl {
+width: 100%;
+}
+
+
+/* dt / ddは同じ280pxの中で縦積み */
+
+.works-statement dl dt {
+width: 100%;
+
+font-size: 16px;
+line-height: 1.5;
+
+margin-bottom: 12px;
+}
+
+.works-statement dl dd {
+width: 100%;
+
+font-size: 16px;
+line-height: 1.8;
+
+margin-left: 0;
+margin-bottom: 48px;
+}
+
+
+/*--------------------------------
+DESIGN SP
+--------------------------------*/
+
+.design dd {
+text-align: justify;
+text-justify: inter-ideograph;
+}
+
+/*--------------------------------
+PROCESS SP
+--------------------------------*/
+
+.process dd {
+position: relative;
+
+width: auto;
+
+margin-left: 0;
+padding-left: 40px;
+}
+
+
+/* 各工程 */
+
+.process dd p {
+position: relative;
+
+width: auto;
+
+margin-left: 0;
+margin-bottom: 20px;
+}
+
+.process dd p:last-child {
+margin-bottom: 0;
+}
+
+/*--------------------------------
+PROCESS / SP 339px以下
+固定アイコンとの重なりを防ぐ
+--------------------------------*/
+
+@media screen and (max-width: 339px) {
+
+    .works-detail-page .process dd p {
+        max-width: calc(100% - 48px);
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+}
+
+
+/* ● */
+
+.process dd p::before {
+content: "";
+
+position: absolute;
+
+top: 0.8em;
+left: -39px;
+
+width: 7px;
+height: 7px;
+
+border-radius: 50%;
+
+background-color: var(--color-main);
+
+transform: translateY(-50%);
+
+z-index: 2;
+}
+
+
+/* ●と●をつなぐ縦線 */
+
+.process dd p::after {
+content: "";
+
+position: absolute;
+
+top: 0.8em;
+left: -35.5px;
+
+width: 0.5px;
+height: calc(100% + 20px);
+
+background-color: var(--color-main);
+
+z-index: 1;
+}
+
+.process dd p:last-child::after {
+content: none;
+}
+
+/* スクロールで伸びるラインを●の中心に合わせる */
+.process-progress-line {
+    left: 4px;
+}
+
+
+/*--------------------------------
+TOOLS SP
+--------------------------------*/
+
+.works-statement .tools dd {
+width: 100%;
+
+line-height: 1.8;
+
+font-family: var(--font-family-en);
+font-size: var(--font-size-main);
+font-weight: 300;
+}
+
+
+/*--------------------------------
+CATEGORY / TYPE SP
+--------------------------------*/
+
+.category-and-type {
+width: 100%;
+
+margin-top: 72px;
+}
+
+.category-and-type a {
+display: inline-block;
+
+font-family: var(--font-family-en);
+font-size: var(--font-size-main);
+line-height: var(--line-height-tight);
+
+margin-right: 10px;
+}
+
+
+/*--------------------------------
+PREV / ALL WORKS / NEXT SP
+--------------------------------*/
+
+.work-navigation {
+    width: calc(100% - 112px);
+
+    margin-top: 96px;
+    margin-right: 56px;
+    margin-bottom: var(--mg-bottom-section);
+    margin-left: auto;
+}
+
+/* MAIN VISUAL直下ナビ / SP */
+.work-navigation--main {
+    position: relative;
+    z-index: 1;
+
+    margin-top: -64px;
+    margin-bottom: var(--mg-bottom-content);
+
+    height: 64px;
+
+    display: flex;
+    align-items: flex-end;
+}
+
+.work-navigation ul {
+    display: flex;
+
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 100%;
+
+    gap: 16px;
+
+    margin: 0;
+    padding: 0;
+}
+
+.work-navigation ul li {
+    flex: 0 0 auto;
+
+    margin: 0;
+    padding: 0;
+}
+
+.work-navigation ul li a {
+    font-size: clamp(17px, 2.5vw, 20px);
+
+    white-space: nowrap;
+}
+
+/* PREV / NEXT ARROW SIZE / SP */
+.prev-work::before,
+.next-work::after {
+    width: 15px;
+    height: 5px;
+}
+
+.prev-work::before {
+    margin-right: 8px;
+}
+
+.next-work::after {
+    margin-left: 8px;
+}
+
+
+
+/*--------------------------------
+OTHER WORKS SP
+--------------------------------*/
+
+.work-carousel-nav {
+width: 100%;
+
+text-align: center;
+}
+
+.work-carousel-nav > span {
+display: inline-block;
+
+font-size: clamp(20px, 3vw, 23px);
+
+margin-bottom: 20px;
+}
+
+
+/*
+少数なら中央。
+作品が増えれば横スワイプ。
+*/
+
+.work-carousel {
+position: relative;
+
+left: 50%;
+
+width: 100vw;
+
+margin-left: -50vw;
+
+padding: 24px 0;
+
+overflow-x: auto;
+overflow-y: hidden;
+
+scrollbar-width: none;
+
+cursor: auto;
+
+user-select: none;
+
+touch-action: auto;
+}
+
+.work-carousel::-webkit-scrollbar {
+display: none;
+}
+
+.work-carousel ul {
+display: flex;
+
+align-items: center;
+justify-content: center;
+
+gap: 20px;
+
+width: max-content;
+min-width: 100%;
+
+margin: 0;
+padding: 0;
+}
+
+.work-carousel ul li {
+flex: 0 0 auto;
+}
+
+.work-carousel ul li img {
+display: block;
+
+width: 110px;
+height: auto;
+}
+
+
+
+/*--------------------------------
+TOP
+--------------------------------*/
+
+.back-to-top {
+display: flex;
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+}
+
+.back-to-top.is-visible {
+opacity: 1;
+visibility: visible;
+pointer-events: auto;
+}
+
+}
+
+/********************* contact SP ********************/
+
+@media screen and (max-width: 767px) {
+
+    .contact-page {
+        width: 100%;
+        margin: 0;
+
+
+    /* SP / ページ共通余白
+    上・左右 24px / 下 0 */
+
+    padding:
+        calc(env(safe-area-inset-top, 0px) + 24px)
+        max(24px, env(safe-area-inset-right, 0px))
+        0
+        max(24px, env(safe-area-inset-left, 0px));
+
+
+        box-sizing: border-box;
+    }
+
+    .contact-page h1 {
+        margin: 0 0 64px;
+        font-size: 40px;
+    }
+
+
+    /* ========================================
+    WRAPPER
+    ======================================== */
+
+.contact-wrapper {
+    width: calc(100% - clamp(72px, 18vw, 96px));
+    max-width: none;
+
+    margin-top: 0;
+    margin-right: clamp(72px, 18vw, 96px);
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+
+    /* ========================================
+    LEAD
+    ======================================== */
+
+    .contact-lead {
+        width: 100%;
+
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: var(--mg-bottom-content);
+        margin-left: 0;
+    }
+
+    .contact-pc-br {
+        display: none;
+    }
+
+    /* ========================================
+    CONTACT / LEAD H2 / SP
+    SERVICEと文字サイズを統一
+    ======================================== */
+
+    .contact-lead h2 {
+        margin-bottom: 20px;
+
+        font-size: clamp(20px, 7vw, 28px);
+        font-weight: 600;
+        line-height: 1.65;
+        letter-spacing: 0.08em;
+
+        text-align: left;
+        white-space: normal;
+    }
+
+    .contact-lead p {
+        text-align: justify;
+        text-justify: inter-character;
+    }
+
+
+    /* ========================================
+    FORM
+    ======================================== */
+
+    .contact-form {
+        width: 100%;
+    }
+
+    .contact-form label {
+        margin-bottom: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+    }
+
+    .contact-form input {
+        height: 36px;
+    }
+
+    .contact-form textarea {
+        height: auto;
+        resize: none;
+        overflow-y: hidden;
+    }
+
+}
+/********************* privacy TB ********************/
+
+/* ========================================
+PRIVACY POLICY / TB
+CONTACTと同じページ骨格
+======================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+
+    .privacy-page {
+        width: 100%;
+        margin: 0 auto;
+        padding: 55px 8vw 0;
+        box-sizing: border-box;
+    }
+
+    .privacy-wrapper {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .privacy-section h2 {
+        font-size: var(--font-size-h3-ja);
+    }
+
+}
+
+
+/* ========================================
+PRIVACY POLICY / SP
+CONTACTと同じページ骨格
+======================================== */
+
+@media screen and (max-width: 767px) {
+
+    .privacy-page {
+        width: 100%;
+        margin: 0;
+
+        padding:
+            40px
+            max(30px, env(safe-area-inset-right, 0px))
+            0
+            max(30px, env(safe-area-inset-left, 0px));
+
+        box-sizing: border-box;
+    }
+
+
+    /* ========================================
+    HEADING / SP
+    ======================================== */
+
+    .privacy-page h1 {
+        margin: 0 0 64px;
+        font-size: 40px;
+    }
+
+
+    /* ========================================
+    WRAPPER / SP
+    CONTACTと同じ本文位置
+    ======================================== */
+
+    .privacy-wrapper {
+        width: calc(100% - clamp(72px, 18vw, 96px));
+        max-width: none;
+
+        margin-top: 0;
+        margin-right: clamp(72px, 18vw, 96px);
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+
+
+    /* ========================================
+    LEAD / SP
+    ======================================== */
+
+    .privacy-lead {
+        width: 100%;
+
+        margin-top: 0;
+        margin-right: 0;
+        margin-bottom: 56px;
+        margin-left: 0;
+    }
+
+    .privacy-lead h2 {
+        margin-bottom: 20px;
+
+        font-size: var(--font-size-h3-en);
+        text-align: left;
+    }
+
+    .privacy-lead p {
+        text-align: justify;
+        text-justify: inter-character;
+    }
+
+
+    /* ========================================
+    SECTION / SP
+    ======================================== */
+
+        .privacy-section  {
+        text-align: justify;
+        text-justify: inter-character;
+    }
+
+    .privacy-section p {
+        text-align: justify;
+        text-justify: inter-character;
+    }
+
+}
+
+
+@media screen and (max-width: 767px) {
+
+/********************* ABOUT SP ********************/
+
+/*********************
+ABOUT / SP
+767px以下
+*********************/
+
+.about-page {
+    width: 100%;
+
+    margin: 0;
+
+
+    /* SP / ページ共通余白
+    上・左右 24px / 下 0 */
+
+    padding:
+        calc(env(safe-area-inset-top, 0px) + 24px)
+        max(24px, env(safe-area-inset-right, 0px))
+        0
+        max(24px, env(safe-area-inset-left, 0px));
+
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+ABOUT TOP SP
+======================================== */
+
+.about-profile {
+    width: 100%;
+}
+
+/* ABOUT TITLE / SP — SERVICEと同じ余白 */
+.about-page h1 {
+    margin: 0 0 64px;
+    font-size: 40px;
+}
+
+
+/* ========================================
+ABOUT HERO / SP
+左端固定・SERVICEと同じ右側余白
+======================================== */
+
+.about-hero {
+    width: calc(100% - clamp(72px, 18vw, 96px));
+    justify-content: flex-start;
+}
+
+.about-hero-art {
+    width: min(540px, 100%);
+}
+
+
+/* ========================================
+ABOUT INFORMATION / SP
+SERVICEと同じ右側セーフティーゾーン
+======================================== */
+
+.about-summary {
+    width: calc(100% - clamp(72px, 18vw, 96px));
+    margin: 0 0 clamp(104px, 28vw, 144px);
+    box-sizing: border-box;
+}
+
+.about-section {
+    width: 100%;
+    margin-bottom: var(--mg-bottom-section);
+}
+
+.about-section:last-child {
+    margin-bottom: 0;
+}
+
+/* H2 / SP — SERVICEと同じ文字サイズ・余白 */
+.about-summary h2 {
+    margin: 0 0 var(--mg-bottom-h2);
+
+    font-size: var(--font-size-h2-en);
+    font-weight: 700;
+    line-height: var(--line-height-tight);
+    text-align: left;
+}
+
+/* H3 / SP */
+.about-summary h3 {
+    margin: var(--mg-bottom-item) 0 0.2em;
+
+    font-size: var(--font-size-h3-ja);
+    font-weight: 700;
+}
+
+/* 本文 / SP */
+.about-section-body {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.about-summary p {
+    width: 100%;
+}
+
+
+/* ========================================
+ABOUT INDEX
+SPでは右レール版を使用しない
+======================================== */
+
+.about-index {
+    display: none;
+}
+
+}
+
+/********************* service SP ********************/
+
+@media screen and (max-width: 767px) {
+
+.service-page {
+    width: 100%;
+    margin: 0;
+
+
+    /* SP / ページ共通余白
+    上・左右 24px / 下 0 */
+
+    padding:
+        calc(env(safe-area-inset-top, 0px) + 24px)
+        max(24px, env(safe-area-inset-right, 0px))
+        0
+        max(24px, env(safe-area-inset-left, 0px));
+
+
+    box-sizing: border-box;
+}
+
+
+.service-page > .service > h1 {
+    margin: 0 0 64px;
+
+    font-family: var(--font-family-en);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+
+.service-page > .service > h1 a {
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+
+.service-wrapper {
+    width: 100%;
+    margin: 0;
+}
+
+
+/* PC / Tablet用右INDEXはSPでは使用しない */
+
+.service-index {
+    display: none;
+}
+
+
+/* ========================================
+SP COMMON
+右側はMENU / TOP専用Safe Area
+======================================== */
+
+.service-section {
+    width: calc(100% - clamp(72px, 18vw, 96px));
+
+    margin-right: clamp(48px, 12vw, 72px);
+
+    box-sizing: border-box;
+    scroll-margin-top: 80px;
+}
+
+
+.service-section > h2 {
+    margin: 0 0 32px;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h2-en);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+/* ========================================
+APPROACH
+======================================== */
+
+.service-approach {
+    margin-bottom: var(--mg-bottom-section);
+}
+
+
+.service-approach-text {
+    width: 100%;
+    margin: 0;
+}
+
+
+.service-approach-lead {
+    width: 100%;
+
+    margin:
+        0
+        0
+        48px;
+
+    font-family: var(--font-family-ja);
+    font-size: clamp(20px, 7vw, 28px);
+    font-weight: 600;
+    line-height: 1.65;
+    letter-spacing: 0.08em;
+
+    color: var(--color-main);
+}
+
+
+.service-approach-body {
+    width: 100%;
+    margin: 0;
+}
+
+
+.service-approach-body p {
+    margin: 0 0 1em;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 300;
+    line-height: var(--line-height-main);
+
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+
+
+.service-approach-body p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ========================================
+MENU
+SP：縦積み
+======================================== */
+
+.service-menu {
+    margin-bottom: var(--mg-bottom-section);
+}
+
+.service-menu-list {
+    position: relative;
+
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.service-menu-column {
+    display: contents;
+}
+
+
+
+.service-menu-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    transition:
+        left 0.25s ease,
+        top 0.25s ease;
+}
+
+
+.service-menu-item h3 {
+    margin: 0;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.service-menu-item h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.service-menu-item ul {
+    margin: var(--mg-bottom-item) 0 0;
+    padding: 0;
+}
+
+
+.service-menu-item li {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 400;
+    line-height: 1.5em;
+
+    color: var(--color-main);
+
+    letter-spacing: -0.05em;
+}
+
+
+/* VIEW WORKS */
+
+.service-menu-works-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 6px;
+
+    width: fit-content;
+    margin-top: 0.8em;
+
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+
+.service-menu-works-text {
+    font-family: var(--font-family-en);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+
+/* CSS生成矢印 */
+
+.service-menu-arrow {
+    position: relative;
+
+    display: block;
+
+    width: 18px;
+    height: 5px;
+
+    flex-shrink: 0;
+
+    transition: transform 0.25s ease;
+}
+
+
+.service-menu-arrow::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+}
+
+
+.service-menu-arrow::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    top: 50%;
+
+    width: 6px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform-origin: right center;
+    transform: rotate(45deg);
+}
+
+
+.service-menu-item h3 a,
+.service-menu-works-link {
+    color: inherit;
+    text-decoration: none;
+
+    transition: opacity 0.25s ease;
+}
+
+
+
+/* ========================================
+SERVICE MENU LINK / SP
+マウス操作時のみホバー演出
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .service-menu-item h3 a:hover,
+    .service-menu-works-link:hover {
+        transform: scaleX(-1);
+    }
+
+    .service-menu-works-link:hover .service-menu-arrow {
+        transform: translateX(4px);
+    }
+
+}
+
+
+
+/* ========================================
+FLOW
+SP：縦積み
+======================================== */
+
+.service-flow {
+    display: block;
+
+    margin-bottom: var(--mg-bottom-section);
+}
+
+
+.service-flow-list {
+    width: 100%;
+    margin: 0;
+}
+
+
+.service-flow-item {
+    display: grid;
+
+    grid-template-columns:
+        40px
+        minmax(0, 1fr);
+
+    column-gap: 20px;
+    align-items: baseline;
+
+    margin-bottom: 32px;
+}
+
+
+.service-flow-item:last-child {
+    margin-bottom: 0;
+}
+
+
+.service-flow-number {
+    display: block;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.service-flow-content {
+    min-width: 0;
+}
+
+
+.service-flow-content h3 {
+    margin: 0 0 10px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-h3-ja);
+    font-weight: 800;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.service-flow-content p {
+    margin: 0;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 300;
+    line-height: var(--line-height-main);
+
+    color: var(--color-main);
+}
+
+
+/********************* FAQ SP ********************/
+
+.service-faq {
+    display: block;
+
+    margin-bottom: var(--mg-bottom-section);
+}
+
+
+.service-faq-list {
+    width: 100%;
+    margin: 0;
+}
+
+
+/* -------------------- FAQ ITEM SP -------------------- */
+
+.service-faq-item {
+    margin: 0;
+
+    border-bottom: 1px solid var(--color-main);
+}
+
+
+.service-faq-item:first-child {
+    border-top: 1px solid var(--color-main);
+}
+
+
+/* -------------------- QUESTION SP -------------------- */
+
+.service-faq-question {
+    display: grid;
+
+    grid-template-columns:
+        28px
+        minmax(0, 1fr)
+        18px;
+
+    column-gap: 12px;
+
+    align-items: start;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 20px 0;
+
+    color: var(--color-main);
+
+    cursor: pointer;
+
+    list-style: none;
+}
+
+
+.service-faq-question::-webkit-details-marker {
+    display: none;
+}
+
+
+.service-faq-question::marker {
+    content: "";
+}
+
+
+
+/* -------------------- Q SP -------------------- */
+
+.service-faq-q {
+    display: block;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-main);
+
+    transform: translateY(3px);
+}
+
+
+/* -------------------- QUESTION TEXT SP -------------------- */
+
+.service-faq-question-text {
+    min-width: 0;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    line-height: var(--line-height-main);
+
+    color: var(--color-main);
+}
+
+
+/* -------------------- PLUS / MINUS SP -------------------- */
+
+.service-faq-icon {
+    position: relative;
+
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    margin-top: 5px;
+
+    flex-shrink: 0;
+}
+
+
+.service-faq-icon::before,
+.service-faq-icon::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 18px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform-origin: center;
+
+    transition: transform 0.3s ease;
+}
+
+
+.service-faq-icon::before {
+    transform:
+        translate(-50%, -50%);
+}
+
+
+.service-faq-icon::after {
+    transform:
+        translate(-50%, -50%)
+        rotate(90deg);
+}
+
+
+.service-faq-item[open]
+.service-faq-icon::after {
+    transform:
+        translate(-50%, -50%)
+        rotate(0deg);
+}
+
+
+/* -------------------- ANSWER SP -------------------- */
+
+.service-faq-answer {
+    padding:
+        0
+        0
+        20px
+        40px;
+}
+
+
+.service-faq-answer p {
+    margin: 0 0 16px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 300;
+    line-height: var(--line-height-main);
+
+    color: var(--color-main);
+}
+
+
+.service-faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ========================================
+SP：CTA
+======================================== */
+
+.service-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+
+    margin:
+        var(--mg-bottom-section)
+        0;
+
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.service-cta-lead {
+    margin:
+        0
+        0
+        var(--mg-bottom-item);
+    
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-h3-ja);
+    font-weight: 500;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+    text-align: center;
+
+    transform: translateX(0.7em);
+}
+
+
+.service-contact-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: fit-content;
+    padding: 0;
+
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+
+.service-contact-label {
+    display: inline-block;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+}
+
+
+.service-contact-arrow {
+    display: block;
+
+    margin-top: 2px;
+
+    font-family: var(--font-family-en);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* ========================================
+PAGE CTA
+ABOUT / SERVICE 共通 / SP
+======================================== */
+
+.page-cta {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    width: 100%;
+
+    margin:
+        var(--mg-bottom-section)
+        0;
+}
+
+
+.page-cta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-width: 0;
+
+    text-align: center;
+}
+
+
+.page-cta-item + .page-cta-item {
+    margin-top: 20%;
+}
+
+
+.page-cta-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 0;
+
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+
+.page-cta-lead {
+    margin: 0 0 12px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    line-height: var(--line-height-tight);
+
+    color: var(--color-main);
+}
+
+
+.page-cta-label {
+    display: inline-block;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h3-en);
+    font-weight: 600;
+    line-height: var(--line-height-tight);
+}
+
+
+.page-cta-arrow {
+    position: relative;
+    display: block;
+
+    width: 18px;
+    height: 18px;
+
+    margin-top: 3px;
+}
+
+
+.page-cta-arrow::before {
+    content: "";
+
+    position: absolute;
+    left: 2px;
+    bottom: 3px;
+
+    width: 20px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform: rotate(-35deg);
+    transform-origin: left center;
+}
+
+
+.page-cta-arrow::after {
+    content: "";
+
+    position: absolute;
+    top: 2px;
+    right: -1px;
+
+    width: 7px;
+    height: 1px;
+
+    background: currentColor;
+}
+
+
+/* -------------------- HOME FOOTER SP -------------------- */
+
+.home-page .footer-bottom {
+    right: max(24px, env(safe-area-inset-right, 0px));
+    bottom: 24px;
+}
+
+} /* END SERVICE SP */
+
+
+/**************************************************************
+WIDE PC
+1401px以上
+**************************************************************/
+
+@media screen and (min-width: 1401px) {
+
+    /*
+    通常Heading
+    WORKSは左側、
+    Categoryは残り幅を使用。
+
+    #Artの文字右端をWORKS GRID右端に合わせる。
+    */
+
+    .works-heading .works-filter-category {
+        justify-content: space-between;
+        column-gap: 0;
+
+        padding-right: 8px;
+        box-sizing: border-box;
+    }
+
+
+    /*
+    Floating
+    通常Headingと同じ横幅・同じ配置ルール
+    */
+
+    .works-heading-floating {
+        column-gap: 14px;
+    }
+
+    .works-heading-floating h1 {
+        margin: 0 40px 0 0;
+    }
+
+    .works-heading-floating .works-filter {
+        display: block;
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .works-heading-floating .works-filter-category {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: baseline;
+        justify-content: space-between;
+
+        width: 100%;
+
+        padding-right: 8px;
+        box-sizing: border-box;
+
+        column-gap: 0;
+    }
+
+
+    /* ========================================
+    WORK DETAIL / WIDE PC
+    1401px以上 / 2カラム固定
+    ======================================== */
+
+    .works-detail {
+        display: grid;
+        grid-template-columns:
+            minmax(0, 1.55fr)
+            minmax(0, 0.85fr);
+        column-gap: clamp(32px, 4vw, 64px);
+        align-items: start;
+    }
+
+    .works-detail .works-images {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .works-detail .works-images img {
+        display: block;
+        width: 100%;
+        max-width: 505px;
+        height: auto;
+    }
+
+    .works-detail .works-statement {
+        width: 100%;
+        min-width: 0;
+        margin-top: var(--mg-bottom-section);
+    }
+
+} /* END WIDE PC / 1401px以上 */
+
+
+/**************************************************************
+MIDDLE PC
+1100px - 1400px
+**************************************************************/
+
+@media screen and (min-width: 1100px) and (max-width: 1400px) {
+
+
+/*********************
+PC NAV
+左右の余白ごと連続的に縮小
+*********************/
+
+header,
+.pc-nav {
+    width: clamp(150px, 15vw, 211px);
+    max-width: none;
+}
+
+.pc-nav ul {
+    width: 100%;
+}
+
+.pc-nav ul li {
+    width: 100%;
+    margin-left: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.pc-nav ul li a {
+    margin-right: 0;
+}
+
+
+/*********************
+RIGHT FIXED UI
+右レール中央を維持
+*********************/
+
+.contact-btn {
+    right: calc(clamp(150px, 15vw, 211px) / 2);
+    transform: translateX(50%);
+}
+
+.works-page .works-filter-type,
+.about-index {
+    width: 130px;
+    right: calc((clamp(150px, 15vw, 211px) - 130px) / 2);
+    transform: none;
+}
+
+
+    /*********************
+    WORKS HEADING
+    *********************/
+
+    .works-heading {
+        width: 100%;
+
+        column-gap: 18px;
+        row-gap: 14px;
+    }
+
+    .works-heading h1 {
+        margin-right: 22px;
+    }
+
+    .works-heading .works-filter,
+    .works-heading .works-filter-category {
+        display: contents;
+    }
+
+    .works-heading .works-filter-category li {
+        flex: 0 0 auto;
+    }
+
+
+    /*********************
+    FLOATING WORKS HEADING
+    通常Headingと同じ中央領域
+    *********************/
+
+    .works-heading-floating {
+        width: var(--pc-main-width);
+        max-width: none;
+
+        column-gap: 18px;
+        row-gap: 14px;
+    }
+
+    .works-heading-floating h1 {
+        margin-right: 22px;
+    }
+
+    .works-heading-floating .works-filter,
+    .works-heading-floating .works-filter-category {
+        display: contents;
+    }
+
+    .works-heading-floating .works-filter-category li {
+        flex: 0 0 auto;
+    }
+
+
+    /*********************
+    WORKS GRID
+    4カラム維持
+    *********************/
+
+    .works-list {
+        width: 100%;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        gap: clamp(20px, 2vw, 29px);
+    }
+
+
+    /*********************
+    WORK DETAIL
+    1401pxの505pxを上限に、
+    1100pxへ向かって連続的に縮小
+    *********************/
+
+    .works-detail {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1.55fr)
+            minmax(260px, 0.85fr);
+
+        column-gap: clamp(32px, 4vw, 64px);
+
+        align-items: start;
+    }
+
+    .works-detail .works-images {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .works-detail .works-images img {
+        display: block;
+
+        width: 100%;
+        max-width: 505px;
+        height: auto;
+
+        margin-bottom: 55px;
+    }
+
+    .works-statement {
+        width: 100%;
+        min-width: 0;
+
+        margin-top: 59px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    /*********************
+    SERVICE
+    *********************/
+
+    .service-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .service-icando {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        column-gap: 64px;
+        row-gap: 72px;
+    }
+
+
+    /*********************
+    CONTACT
+    *********************/
+
+    .contact-wrapper {
+        width: min(640px, 80%);
+        max-width: 100%;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+}
+
+
+/*--------------------------------
+/* HOMEではTOPボタンを非表示 */
+--------------------------------*/
+
+.home-page .back-to-top {
+display: none;
+}
+
+/* ========================================
+WORK DETAIL / PAGE CTA / PC
+3カラム表示
+======================================== */
+
+@media screen and (min-width: 1100px) {
+
+    .works-detail-page .page-cta-work-detail {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* ========================================
+WORK DETAIL / PAGE CTA / TB
+3カラム表示・横幅調整
+======================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+
+    .works-detail-page .page-cta-work-detail {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+    }
+
+}
+
+
+
+
+
+/* ========================================
+WORK DETAIL / PAGE CTA / SP
+右側セーフティゾーンを除いた中央配置
+About・Service：2列
+Contact：2段目中央
+======================================== */
+
+@media screen and (max-width: 767px) {
+
+    .page-cta.page-cta-work-detail {
+        display: grid;
+
+        /* 右側固定UIのセーフティゾーンを確保 */
+        width: calc(100% - 25px);
+        margin-left: 0;
+        margin-right: auto;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 16px;
+        row-gap: 40px;
+    }
+
+    /* 既存SPの縦並び余白を解除 */
+    .page-cta.page-cta-work-detail .page-cta-item {
+        margin-top: 0;
+        min-width: 0;
+    }
+
+    /* Contactを2段目中央へ */
+    .page-cta.page-cta-work-detail .page-cta-item:nth-child(3) {
+        grid-column: 1 / -1;
+        width: calc((100% - 16px) / 2);
+        justify-self: center;
+    }
+
+}
+
+/* -------------------------- News --------------------------*/
+
+/* ========================================
+NEWS / COMMON / PC・TB・SP
+FLOWの2カラム + FAQの罫線
+CONTACTと同じコンテンツ幅
+======================================== */
+
+.news-page {
+    box-sizing: border-box;
+}
+
+/* --------------------
+NEWS / HEADING / COMMON
+-------------------- */
+
+.news-page .news > h1 {
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-h1-en);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.news-page .news > h1 a {
+    display: inline-block;
+    color: var(--color-main);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+/* NEWS / HEADING HOVER / PC */
+@media (hover: hover) and (pointer: fine) {
+    .news-page .news > h1 a:hover {
+        transform: scaleX(-1);
+    }
+}
+
+/* ========================================
+NEWS / HEADING GROUP / PC・TB・SP
+======================================== */
+
+.news-heading-group {
+    width: 600px;
+    max-width: 100%;
+    margin: 0 auto var(--mg-bottom-content);
+    box-sizing: border-box;
+}
+
+.news-heading {
+    margin: 0 0 var(--mg-bottom-h2);
+
+    font-family: var(--font-family-ja);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: var(--line-height-tight); /* 1.2 */
+    color: var(--color-main);
+}
+
+.news-heading-group .h2-lead {
+    margin: 0 0 96px;
+
+    font-family: var(--font-family-ja);
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    line-height: var(--line-height-main);
+}
+
+
+/* ========================================
+NEWS / WRAPPER / COMMON
+CONTACTと同じ幅
+======================================== */
+
+.news-page .news-wrapper {
+    width: 600px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+
+
+/* ========================================
+NEWS / LIST / PC・TB・SP
+======================================== */
+
+.news-list {
+    width: 100%;
+    border-top: 1px solid var(--color-main);
+}
+
+
+/* ========================================
+NEWS / ITEM / PC・TB
+2列・日付とタイトルをベースライン揃え
+======================================== */
+
+.news-item {
+    display: grid;
+    grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
+    grid-template-areas:
+        "date title"
+        "category body";
+
+    column-gap: 32px;
+    row-gap: 12px;
+
+    align-items: baseline;
+
+    width: 100%;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--color-main);
+    box-sizing: border-box;
+    scroll-margin-top: 96px;
+}
+
+
+/* ========================================
+NEWS / DATE / PC・TB・SP
+======================================== */
+
+.news-date {
+    grid-area: date;
+
+    margin: 0;
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-main);
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+NEWS / TITLE / PC・TB・SP
+======================================== */
+
+.news-title {
+    grid-area: title;
+
+    margin: 0;
+    min-width: 0;
+    font-family: var(--font-family-ja);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+NEWS / CATEGORY / PC・TB・SP
+======================================== */
+
+.news-category {
+    grid-area: category;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--color-gray);
+}
+
+
+/* ========================================
+NEWS / BODY / PC・TB・SP
+======================================== */
+
+.news-body {
+    grid-area: body;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.news-body p {
+    margin: 0 0 14px;
+    font-size: var(--font-size-main);
+    font-weight: 500;
+    line-height: var(--line-height-main);
+}
+
+.news-body p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ========================================
+NEWS / LINKS / PC・TB・SP
+文字は左右反転・矢印は右へ移動
+======================================== */
+
+.news-body a.news-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    width: fit-content;
+
+    color: var(--color-main);
+    text-decoration: none;
+}
+
+/* NEWS / LINK TEXT / PC・TB・SP */
+
+.news-link-text {
+    display: inline-block;
+
+    font-family: var(--font-family-en);
+    font-size: 14px;
+    font-weight: 400;
+
+    border: none;
+    text-decoration: none;
+
+    transition: transform 0.3s ease;
+}
+
+/* ========================================
+NEWS / LINK ARROW / PC・TB・SP
+SERVICE「View works」と同じ形状
+======================================== */
+
+.news-link-arrow {
+    position: relative;
+    display: block;
+
+    width: 18px;
+    height: 5px;
+    flex: 0 0 18px;
+
+    transition: transform 0.25s ease;
+}
+
+/* 矢印の横線 */
+.news-link-arrow::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+}
+
+/* 矢印の先端 */
+.news-link-arrow::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    top: 50%;
+
+    width: 6px;
+    height: 1px;
+
+    background: currentColor;
+
+    transform-origin: right center;
+    transform: rotate(45deg);
+}
+
+/* ========================================
+NEWS / LINK HOVER / PC
+文字は左右反転・矢印は右へ3px
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+    .news-link:hover .news-link-text {
+        transform: scaleX(-1);
+    }
+
+    .news-link:hover .news-link-arrow {
+        transform: translateX(4px);
+    }
+
+}
+
+
+
+/* ========================================
+NEWS / PAGINATION / PC・TB・SP
+ページ番号・Prev・Next
+======================================== */
+
+.news-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 48px;
+}
+
+/* ページ番号・Prev・Next 共通 */
+.news-pagination a {
+    display: inline-block;
+    padding: 4px 2px;
+
+    font-family: var(--font-family-en);
+    font-size: var(--font-size-small);
+    font-weight: 300;
+    line-height: 1.5;
+
+    color: var(--color-main);
+    text-decoration: none;
+
+    transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* 現在のページ */
+.news-pagination a.is-active {
+    font-weight: 600;
+    border-bottom: 1px solid currentColor;
+}
+
+
+/* ========================================
+NEWS / PAGINATION HOVER / PC
+Prev・Next：左右反転
+ページ番号：透明度変化
+======================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+    /* Prev・Next */
+    .news-pagination a:first-child:not(.is-active):hover,
+    .news-pagination a:last-child:not(.is-active):hover {
+        transform: scaleX(-1);
+    }
+
+    /* ページ番号 */
+    .news-pagination a:not(:first-child):not(:last-child):not(.is-active):hover {
+        opacity: 0.5;
+    }
+}
+
+
+
+
+/* ========================================
+NEWS / PC
+1100px以上
+======================================== */
+
+@media screen and (min-width: 1100px) {
+
+    .news-page {
+        width: var(--pc-main-width);
+        margin: 0 auto;
+        padding-top: 55px;
+    }
+
+    .news-page .news > h1 {
+        margin: 0 0 var(--mg-bottom-section);
+    }
+
+    /* CONTACT / PC と同じ */
+    .news-page .news-wrapper {
+        width: 600px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+}
+
+
+/* ========================================
+NEWS / TB
+768px - 1099px
+======================================== */
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+
+    .news-page {
+        width: calc(100% - 80px);
+        max-width: 960px;
+
+        margin: 0 auto;
+        padding-top: 40px;
+    }
+
+    .news-page .news > h1 {
+        margin: 0 0 clamp(96px, 13vw, 160px);
+        font-size: clamp(40px, 5vw, 48px);
+    }
+
+    /* CONTACT / TB と同じ */
+    .news-page .news-wrapper {
+        width: min(640px, 80%);
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    /* NEWS / HEADING GROUP / TB */
+    .news-heading-group {
+        width: min(640px, 80%);
+    }
+
+    /* NEWS / H2 / TB */
+    .news-heading {
+        font-size: clamp(28px, 3.6vw, 32px);
+    }
+
+    .news-item {
+        grid-template-columns: minmax(0, 130px) minmax(0, 1fr);
+        column-gap: 24px;
+        padding: 32px 0;
+    }
+
+}
+
+
+/* ========================================
+NEWS / SP
+767px以下
+======================================== */
+
+@media screen and (max-width: 767px) {
+
+    .news-page {
+        width: 100%;
+        margin: 0;
+
+        padding:
+            calc(env(safe-area-inset-top, 0px) + 24px)
+            max(24px, env(safe-area-inset-right, 0px))
+            0
+            max(24px, env(safe-area-inset-left, 0px));
+
+        box-sizing: border-box;
+    }
+
+    .news-page .news > h1 {
+        margin: 0 0 64px;
+        font-size: 40px;
+    }
+
+    /* --------------------
+    NEWS / WRAPPER / SP
+    CONTACT / SP と同じ
+    -------------------- */
+
+    .news-page .news-wrapper {
+        width: calc(100% - clamp(72px, 18vw, 96px));
+        max-width: none;
+
+        margin-top: 0;
+        margin-right: clamp(72px, 18vw, 96px);
+        margin-bottom: 0;
+        margin-left: 0;
+    }
+
+    /* NEWS / HEADING GROUP / SP */
+    .news-heading-group {
+        width: calc(100% - clamp(72px, 18vw, 96px));
+        max-width: none;
+        margin-left: 0;
+        margin-right: clamp(72px, 18vw, 96px);
+    }
+
+    .news-heading {
+        font-size: clamp(20px, 7vw, 28px);
+    }
+
+
+    /* ========================================
+    NEWS / ITEM / SP
+    1カラム表示
+    ======================================== */
+
+    .news-item {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "date"
+            "category"
+            "title"
+            "body";
+
+        row-gap: 12px;
+        column-gap: 0;
+        padding: 28px 0;
+    }
+
+    /* NEWS / TITLE / SP */
+    .news-title {
+        font-size: 20px;
+    }
+
+
+    .news-pagination {
+        margin-top: 40px;
+    }
+
+}
