@@ -2115,7 +2115,7 @@ cursor: grab;
 
 user-select: none;
 
-touch-action: pan-y;
+touch-action: auto;
 }
 
 
