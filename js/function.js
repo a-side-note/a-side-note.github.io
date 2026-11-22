@@ -2591,50 +2591,76 @@ requestAnimationFrame(animateSlide);
 
 
 
+
 /*
 ========================================
-OTHER WORKS / PC AUTO SCROLL
-PC（1100px以上）のみ
-20px/秒で最後の作品まで横移動
-縦バウンド・ホバー・操作中は一時停止
-小数の移動量を蓄積して低速でも安定動作
-TB・SPは変更しない
+OTHER WORKS / PC・TB AUTO SCROLL
+PC・TB（768px以上）
+15px/秒で右端までゆっくり横移動
+
+・マウス操作中は一時停止
+・タッチ操作中は一時停止
+・タッチ終了後は1.5秒待って再開
+・PCの縦バウンド中は一時停止
+・SPの既存処理は変更しない
 ========================================
 */
 
-(function setupPcCarouselAutoScroll() {
+(function setupCarouselAutoScroll() {
 
-    const pcMedia = window.matchMedia('(min-width: 1100px)');
+    const autoScrollMedia = window.matchMedia(
+        '(min-width: 768px)'
+    );
+
+    const finePointerMedia = window.matchMedia(
+        '(hover: hover) and (pointer: fine)'
+    );
+
     const reduceMotion = window.matchMedia(
         '(prefers-reduced-motion: reduce)'
     );
 
-    // PC横スクロール速度：px/秒
     const scrollSpeed = 15;
 
     let pointerInside = false;
     let pointerPressed = false;
+    let touchActive = false;
+    let touchResumeTime = 0;
+
     let visible = false;
     let lastTime = null;
     let frameId = null;
 
-    // 小数点以下も保持するスクロール位置
     let preciseLeft = workCarousel.scrollLeft;
 
+
+    /*
+    ========================================
+    PC・TB / MOVE CONDITION
+    ========================================
+    */
+
     function canMove() {
-        return pcMedia.matches &&
+
+        return (
+            autoScrollMedia.matches &&
             !reduceMotion.matches &&
             visible &&
             !pointerInside &&
             !pointerPressed &&
+            !touchActive &&
+            performance.now() >= touchResumeTime &&
             !mouseIsDown &&
             !pcBounceRunning &&
-            !workCarousel.hidden;
+            !workCarousel.hidden
+        );
+
     }
+
 
     /*
     ========================================
-    PC / AUTO SCROLL
+    PC・TB / AUTO SCROLL
     ========================================
     */
 
@@ -2642,21 +2668,27 @@ TB・SPは変更しない
 
         frameId = null;
 
-        if (!pcMedia.matches || reduceMotion.matches || !visible) {
+        if (
+            !autoScrollMedia.matches ||
+            reduceMotion.matches ||
+            !visible
+        ) {
+
             lastTime = null;
             return;
+
         }
 
         if (canMove()) {
 
             const maxLeft = Math.max(
                 0,
-                workCarousel.scrollWidth - workCarousel.clientWidth
+                workCarousel.scrollWidth -
+                workCarousel.clientWidth
             );
 
             if (lastTime === null) {
 
-                // 再開時は実際の位置に同期
                 preciseLeft = workCarousel.scrollLeft;
 
             } else if (preciseLeft < maxLeft) {
@@ -2666,7 +2698,6 @@ TB・SPは変更しない
                     100
                 );
 
-                // 小数の移動量を保持して加算
                 const distance =
                     elapsed / 1000 * scrollSpeed;
 
@@ -2676,58 +2707,80 @@ TB・SPは変更しない
                 );
 
                 workCarousel.scrollLeft = preciseLeft;
+
             }
 
             lastTime = timestamp;
 
         } else {
 
-            // 停止中の時間を移動距離に含めない
             lastTime = null;
 
         }
 
         frameId = requestAnimationFrame(tick);
+
     }
+
 
     /*
     ========================================
-    PC / START・STOP
+    PC・TB / START・STOP
     ========================================
     */
 
     function updateLoop() {
 
         if (frameId !== null) {
+
             cancelAnimationFrame(frameId);
             frameId = null;
+
         }
 
         lastTime = null;
         preciseLeft = workCarousel.scrollLeft;
 
         if (
-            pcMedia.matches &&
+            autoScrollMedia.matches &&
             !reduceMotion.matches &&
             visible
         ) {
+
             frameId = requestAnimationFrame(tick);
+
         }
+
     }
+
 
     /*
     ========================================
     PC / MOUSE HOVER
+    タッチ端末の疑似hoverを除外
     ========================================
     */
 
-    workCarousel.addEventListener('mouseenter', function () {
-        pointerInside = true;
-    });
+    workCarousel.addEventListener(
+        'mouseenter',
+        function () {
 
-    workCarousel.addEventListener('mouseleave', function () {
-        pointerInside = false;
-    });
+            if (finePointerMedia.matches) {
+                pointerInside = true;
+            }
+
+        }
+    );
+
+    workCarousel.addEventListener(
+        'mouseleave',
+        function () {
+
+            pointerInside = false;
+
+        }
+    );
+
 
     /*
     ========================================
@@ -2735,38 +2788,127 @@ TB・SPは変更しない
     ========================================
     */
 
-    workCarousel.addEventListener('mousedown', function (event) {
-        if (event.button === 0) {
-            pointerPressed = true;
+    workCarousel.addEventListener(
+        'mousedown',
+        function (event) {
+
+            if (event.button === 0) {
+                pointerPressed = true;
+            }
+
         }
-    });
+    );
 
-    window.addEventListener('mouseup', function () {
-        pointerPressed = false;
-    });
+    window.addEventListener(
+        'mouseup',
+        function () {
 
-    window.addEventListener('blur', function () {
-        pointerPressed = false;
-        pointerInside = false;
-    });
+            pointerPressed = false;
+
+        }
+    );
+
 
     /*
     ========================================
-    PC / VISIBILITY
+    TB / TOUCH OPERATION
+    スワイプ操作を優先
     ========================================
     */
 
-    const observer = new IntersectionObserver(function (entries) {
-        visible = entries[0].isIntersecting;
-        updateLoop();
-    }, { threshold: 0 });
+    workCarousel.addEventListener(
+        'touchstart',
+        function () {
+
+            touchActive = true;
+            lastTime = null;
+
+        },
+        { passive: true }
+    );
+
+    function finishTouch() {
+
+        touchActive = false;
+
+        touchResumeTime =
+            performance.now() + 1500;
+
+        lastTime = null;
+
+    }
+
+    workCarousel.addEventListener(
+        'touchend',
+        finishTouch,
+        { passive: true }
+    );
+
+    workCarousel.addEventListener(
+        'touchcancel',
+        finishTouch,
+        { passive: true }
+    );
+
+
+    /*
+    ========================================
+    PC・TB / WINDOW BLUR
+    ========================================
+    */
+
+    window.addEventListener(
+        'blur',
+        function () {
+
+            pointerPressed = false;
+            pointerInside = false;
+            touchActive = false;
+
+        }
+    );
+
+
+    /*
+    ========================================
+    PC・TB / VISIBILITY
+    ========================================
+    */
+
+    const observer = new IntersectionObserver(
+        function (entries) {
+
+            visible = entries[0].isIntersecting;
+
+            updateLoop();
+
+        },
+        {
+            threshold: 0
+        }
+    );
 
     observer.observe(workCarousel);
 
-    pcMedia.addEventListener('change', updateLoop);
-    reduceMotion.addEventListener('change', updateLoop);
+
+    /*
+    ========================================
+    PC・TB / MEDIA CHANGE
+    ========================================
+    */
+
+    autoScrollMedia.addEventListener(
+        'change',
+        updateLoop
+    );
+
+    reduceMotion.addEventListener(
+        'change',
+        updateLoop
+    );
 
 })();
+
 
 
 /*
