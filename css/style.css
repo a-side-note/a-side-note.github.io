@@ -7068,12 +7068,21 @@ pointer-events: auto;
         margin-bottom: 12px;
     }
 
+
+    /* ========================================
+    CONTACT / INPUT・TEXTAREA / SP
+    iPhone Safari 自動ズーム対策
+    ======================================== */
+
     .contact-form input,
     .contact-form textarea {
         width: 100%;
         max-width: none;
         box-sizing: border-box;
+
+        font-size: 16px;
     }
+
 
     .contact-form input {
         height: 36px;
