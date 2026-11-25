@@ -66,9 +66,9 @@ async function loadCommonParts() {
             footerTarget.innerHTML = footerHTML;
         }
 
-        // header・footerの準備が終わってから既存のfunction.jsを実行
+        // header・footerの準備が終わってから既存のfunction.js?v=20261125-01を実行
         const functionScript = document.createElement("script");
-        functionScript.src = "/js/function.js";
+        functionScript.src = "/js/function.js?v=20261125-01";
         document.body.appendChild(functionScript);
 
     } catch (error) {

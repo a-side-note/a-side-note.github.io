@@ -601,16 +601,17 @@ HOME IDENTITY / SP
     /* -------------------- BRAND NAME / SP -------------------- */
 
     .home-concept {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
 
-        font-size: clamp(16px, 4.5vw, 20px);
+        font-size: clamp(18px, 5.5vw, 23px);
+        font-weight: 600;
         line-height: 1.2;
     }
 
     /* -------------------- SUB TEXT / SP -------------------- */
 
     .graphic-designer {
-        font-size: var(--font-size-main);
+        font-size: var(--font-size-small);
         line-height: 1.4;
     }
 
@@ -620,11 +621,6 @@ HOME IDENTITY / SP
         display: none;
     }
 }
-
-
-
-
-
 
 /* ========================================
 HOME LAYOUT / PC・TB・SP
@@ -864,19 +860,27 @@ MENU・右固定アイコンのセーフティゾーン確保
 
 /* ========================================
 HOME LAYOUT / SP
-固定ナビ・MENU・右固定アイコンを避ける
+TOPとNEWSの間にIDENTITYを中央配置
 ======================================== */
 
 @media screen and (max-width: 767px) {
 
     .home-page main {
+        grid-template-rows: minmax(0, 1fr) auto;
+
         padding:
-            calc(env(safe-area-inset-top, 0px) + 120px)
-            56px
+            0
+            24px
             80px
-            130px;
+            clamp(70px, 23vw, 100px);
     }
 
+    /* -------------------- HOME IDENTITY POSITION / SP -------------------- */
+
+    .home-page main > h1 {
+        align-self: center;
+        margin: 0;
+    }
 
     /* -------------------- HOME NEWS ITEM / SP -------------------- */
 
@@ -886,12 +890,44 @@ HOME LAYOUT / SP
             "date"
             "title";
 
-        row-gap: 4px;
-        padding: 12px 0;
+        row-gap: 2px;
+        padding: 6px 0;
     }
 
-    .home-news .news-title {
-        font-size: 10px;
+    /* -------------------- HOME NEWS DATE / SP -------------------- */
+
+    .home-news .home-news-item .news-date {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.4;
+        color: var(--color-main);
+    }
+
+    /* -------------------- HOME NEWS TITLE / SP -------------------- */
+
+    .home-news .home-news-item .news-title {
+        font-size: var(--font-size-small);
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    /* -------------------- HOME NEWS ARROW / SP -------------------- */
+
+    /* 文章と矢印の間隔 */
+    .home-news .home-news-link {
+        gap: 8px;
+    }
+
+    /* 矢印の右側余白・濃度 */
+    .home-news-link .news-link-arrow {
+        margin-right: 24px;
+        opacity: 0.7;
+    }
+
+    /* 矢印の横線・先端の太さ */
+    .home-news-link .news-link-arrow::before,
+    .home-news-link .news-link-arrow::after {
+        height: 1px;
     }
 
     /* -------------------- HOME NEWS VIEW MORE / SP -------------------- */
@@ -899,8 +935,20 @@ HOME LAYOUT / SP
     .home-page .home-news a.home-news-more {
         display: none;
     }
-}
 
+    /* -------------------- HOME IDENTITY / SMALL SP -------------------- */
+
+    @media screen and (max-width: 374px) {
+
+        .home-concept {
+            white-space: normal;
+        }
+
+        .graphic-designer {
+            white-space: normal;
+        }
+    }
+}
 
 
 /********************* footer PC ********************/
@@ -1066,6 +1114,27 @@ Privacy Policy + Copyright
     }
 }
 
+/* ========================================
+HOME FOOTER / SP
+IDENTITY・NEWSと左端を統一
+======================================== */
+
+@media screen and (max-width: 767px) {
+
+    .home-page .footer-bottom {
+        left: clamp(70px, 23vw, 100px);
+        right: 24px;
+
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        gap: 6px;
+        text-align: left;
+        white-space: nowrap;
+    }
+}
 
 /*==================================================
 works

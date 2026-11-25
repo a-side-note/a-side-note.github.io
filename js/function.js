@@ -1274,7 +1274,7 @@ const currentWorkType =
 ========================================
 DETAIL META / PC・TB・SP
 Category / Type / Date
-works-data.js から自動生成
+works-data.js?v=20261125-01 から自動生成
 ========================================
 */
 
