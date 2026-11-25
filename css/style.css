@@ -1561,6 +1561,7 @@ font-family: var(--font-family-en);
 }
 
 
+
 /*--------------------------------
 PROCESS TIMELINE
 --------------------------------*/
@@ -1762,6 +1763,78 @@ PROCESS / SCROLL ANIMATION
 
 
 /* ========================================
+   WORK DETAIL / PROCESS DETAILS
+   PC・TB・SP 共通
+======================================== */
+
+/* 詳細項目を持つ大項目 */
+.works-statement .process dd p:has(+ .process-details) {
+    margin-bottom: 4px;
+}
+
+/* 詳細項目 / PC・TB */
+.works-statement .process dd .process-details {
+    display: block;
+
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-gray);
+
+    margin-top: 0;
+    margin-bottom: 35px;
+}
+
+/* 最後の工程 */
+.works-statement .process dd .process-details:last-child {
+    margin-bottom: 0;
+}
+
+/* 大項目の到達に合わせて詳細項目を表示 */
+.js .works-statement .process dd p:not(.is-process-reached)
+    + .process-details {
+    visibility: hidden;
+}
+
+/* -------------------- PROCESS DETAILS / SP -------------------- */
+
+@media screen and (max-width: 767px) {
+
+    .works-statement .process dd .process-details {
+        margin-bottom: 20px;
+    }
+
+    .works-statement .process dd .process-details:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* -------------------- PROCESS DETAILS / SP 339px以下 -------------------- */
+
+@media screen and (max-width: 339px) {
+
+    .works-statement .process dd .process-details {
+        max-width: calc(100% - 48px);
+        overflow-wrap: anywhere;
+    }
+}
+
+/* -------------------- REDUCED MOTION / PC・TB・SP -------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .js .works-statement .process dd p:not(.is-process-reached)
+        + .process-details {
+        visibility: visible;
+    }
+}
+
+
+
+
+
+
+/* ========================================
 WORK DETAIL / TYPE LABEL / PC・TB・SP
 ======================================== */
 
@@ -1885,6 +1958,7 @@ Category・Type・Dateのみ余白調整
 .works-statement .work-meta dt {
     margin-bottom: 0px;
 }
+
 
 
 
@@ -6611,18 +6685,10 @@ WORK DETAIL / WORK IMAGES / SP
 }
 
 
-
-/*--------------------------------ß
-STATEMENT SP
---------------------------------*/
-
-/*
-390px画面の中に
-280pxの情報カラムを右寄せ。
-
-PC版の「右側にStatement」
-という構成をSPにも残す。
-*/
+/* ========================================
+WORK DETAIL / STATEMENT / SP
+ABOUT・SERVICEと同じ右側セーフティーゾーン
+======================================== */
 
 .works-statement {
     width: min(
@@ -6630,10 +6696,15 @@ PC版の「右側にStatement」
         calc(100% - clamp(72px, 18vw, 96px))
     );
 
+    min-width: 0;
+    box-sizing: border-box;
+
     margin-top: 40px;
-    margin-right: clamp(48px, 12vw, 72px);
+    margin-right: clamp(72px, 18vw, 96px);
     margin-bottom: var(--mg-bottom-section);
     margin-left: auto;
+
+    overflow-wrap: anywhere;
 }
 
 .works-statement dl {
