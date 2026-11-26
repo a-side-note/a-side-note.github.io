@@ -145,7 +145,7 @@ const workData = [
     id: '010',
     url: 'work-010.html',
     image: '/img/works/010-card-illust-01.webp',
-    alt: 'Illustrator Business Card',
+    alt: 'Adobe Illustrator Business Card',
     category: ['artwork', 'print'],
     type: 'personal',
     date: '2026.4',
